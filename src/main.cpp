@@ -35,7 +35,7 @@ int main()
   const std::string COMMANDS_FILE = "data/Commands.txt";
 
   std::shared_ptr<IAccountReader> pcAccountReader(new FileAccountReader(ACCOUNTS_FILE));
-  std::shared_ptr<ICommandReader> pcCommandReader(new FileCommandReader(COMMANDS_FILE))
+  std::shared_ptr<ICommandReader> pcCommandReader(new FileCommandReader(COMMANDS_FILE));
   std::shared_ptr<Bank> pcTheBank(new Bank(pcAccountReader));
   
 

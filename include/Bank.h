@@ -7,14 +7,14 @@
 // Purpose:    To define the header file the Bank 
 //********************************************************
 
-#pragma once
+#ifndef _Bank_H_
+#define _Bank_H_
 
 #include <memory>
 #include <vector>
 
 #include "IAccountReader.h"
 #include "IBankAccount.h"
-#include "ICommandReader.h"
 
 class Bank
 {
@@ -25,7 +25,7 @@ class Bank
     Bank(std::shared_ptr<IAccountReader>&);
     virtual ~Bank();
 
-   virtual void doBankOperations(std::shared_ptr<ICommandReader>&);
+    //virtual void doBankOperations(std::shared_ptr<ICommandReader>&);
 
     std::shared_ptr<IBankAccount> findAccount(int);
 
@@ -36,3 +36,4 @@ class Bank
     virtual void withdraw(int, long long);
 };
 
+#endif

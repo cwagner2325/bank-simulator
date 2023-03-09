@@ -7,7 +7,8 @@
 // Purpose:    To define the header file the ICommandReader 
 //********************************************************
 
-#pragma once
+#ifndef _ICommandReader_H_
+#define _ICommandReader_H_
 
 #include <iostream>
 #include <string>
@@ -26,3 +27,5 @@ class ICommandReader
     virtual void readAll(std::vector<std::shared_ptr<ICommand>>&) = 0;
 
 };
+
+#endif

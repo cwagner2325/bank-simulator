@@ -7,7 +7,8 @@
 // Purpose:    To define the header file the ICommand 
 //********************************************************
 
-#pragma once
+#ifndef _ICommand_H_
+#define _ICommand_H_
 
 #include <iostream>
 #include <fstream>
@@ -25,3 +26,5 @@ class ICommand
     virtual void execute(Bank&) = 0;
 
 };
+
+#endif
