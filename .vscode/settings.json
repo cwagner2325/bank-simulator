@@ -97,5 +97,6 @@
       "icon": "terminal-cmd"
     },
   },
-  "terminal.integrated.defaultProfile.windows":"Dev Command Prompt"
+  "terminal.integrated.defaultProfile.windows": "Dev Command Prompt",
+  "C_Cpp.errorSquiggles": "disabled"
 }
