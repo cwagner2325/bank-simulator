@@ -15,11 +15,12 @@
 #include "Bank.h"
 
 //***************************************************************************
-// Constructor:    
+// Constructor:    Bank
 //
-// Description: 
+// Description:    Reads in all accounts from the account reader and stores 
+//                 them in its member variable mapcAccount
 //
-// Parameters:  
+// Parameters:     rcReader - a reference to an account reader
 //***************************************************************************
 Bank::Bank(std::shared_ptr<IAccountReader>& rcReader)
 {
@@ -27,20 +28,20 @@ Bank::Bank(std::shared_ptr<IAccountReader>& rcReader)
 }
 
 //***************************************************************************
-// Destructor:    
+// Destructor:    Bank
 //
-// Description: 
+// Description:   the destructor for the Bank class
 //***************************************************************************
 Bank::~Bank() {}
 
 //***************************************************************************
-// Function:    
+// Function:    findAccount
 //
-// Description: 
+// Description: finds an account in the account vector based on an account number
 //
-// Parameters:  
+// Parameters:  key - the account number that is searched for
 //
-// Returned:    
+// Returned:    a shared pointer to the account if found, else nullptr
 //***************************************************************************
 std::shared_ptr<IBankAccount> Bank::findAccount(int key)
 {
@@ -55,13 +56,13 @@ std::shared_ptr<IBankAccount> Bank::findAccount(int key)
 }
 
 //***************************************************************************
-// Function:    
+// Function:    printAll
 //
-// Description: 
+// Description: prints all the accounts in the vector to the terminal
 //
-// Parameters:  
+// Parameters:  none
 //
-// Returned:    
+// Returned:    none
 //***************************************************************************
 void Bank::printAll()
 {
@@ -89,13 +90,13 @@ void Bank::printAll()
 }
 
 //***************************************************************************
-// Function:    
+// Function:    updateMonth
 //
-// Description: 
+// Description: iterates through the vector and calls updateMonth on each account
 //
-// Parameters:  
+// Parameters:  none
 //
-// Returned:    
+// Returned:    none
 //***************************************************************************
 void Bank::updateMonth()
 {
@@ -106,13 +107,15 @@ void Bank::updateMonth()
 }
 
 //***************************************************************************
-// Function:    
+// Function:    deposit
 //
-// Description: 
+// Description: finds an account based on an account number and deposits an
+//              amount if the account is found
 //
-// Parameters:  
+// Parameters:  accountNumber - the key of an account that is searched for
+//              depositAmount - the amount deposited into the found account
 //
-// Returned:    
+// Returned:    none
 //***************************************************************************
 void Bank::deposit(int accountNumber, long long depositAmount)
 {
@@ -125,13 +128,15 @@ void Bank::deposit(int accountNumber, long long depositAmount)
 }
 
 //***************************************************************************
-// Function:    
+// Function:    withdraw
 //
-// Description: 
+// Description: finds an account based on an account number and withdraws an
+//              amount if the account is found
 //
-// Parameters:  
+// Parameters:  accountNumber  - the key of an account that is searched for
+//              withdrawAmount - the amount withdrawn from the found account
 //
-// Returned:    
+// Returned:    none
 //***************************************************************************
 void Bank::withdraw(int accountNumber, long long withdrawAmount)
 {

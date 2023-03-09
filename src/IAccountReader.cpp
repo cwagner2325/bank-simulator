@@ -11,4 +11,9 @@
 
 #include "IAccountReader.h"
 
+//***************************************************************************
+// Destructor:    IAccountReader
+//
+// Description:   destructor for the IAccountReader class
+//***************************************************************************
 IAccountReader::~IAccountReader() {}

@@ -4,7 +4,8 @@
 // Date:        March 8, 2023
 // Class:       AOO - CS485
 // Assignment:  Bank
-// Purpose:     
+// Purpose:     Practice my Object Oriented Design Skills. Practice my UML
+//              design skills. Practice new C++ syntax and idioms.
 //***************************************************************************
 
 #include <iostream>
@@ -20,11 +21,11 @@
 //***************************************************************************
 // Function:    main
 //
-// Description: 
+// Description: Initializes a Bank object and starts the Bank Operations
 //
-// Parameters:  
+// Parameters:  none
 //
-// Returned:    
+// Returned:    EXIT_SUCCESS
 //***************************************************************************
 int main()
 {
@@ -51,4 +52,5 @@ int main()
   cTheBank->updateMonth();
   cTheBank->printAll();
 
+  return EXIT_SUCCESS;
 }

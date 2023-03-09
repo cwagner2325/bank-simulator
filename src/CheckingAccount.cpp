@@ -12,11 +12,17 @@
 #include "CheckingAccount.h"
 
 //***************************************************************************
-// Constructor:    
+// Constructor:    CheckingAccount
 //
-// Description: 
+// Description:     Calls the super class constructor and then sets its own 
+//                  mebmber variables to initalize a checking account object
 //
-// Parameters:  
+// Parameters:      accNumber     - The account number of the new account
+//                  balance       - The initial balance of the new account
+//                  intRate       - The interest rate of the new account
+//                  minBalance    - The minimum balance of the account before 
+//                                  a fee incurs
+//                  minBalanceFee - The fee charged if the minimum is reached
 //***************************************************************************
 CheckingAccount::CheckingAccount(int accNumber, long long balance, double intRate, long long minBalance, long long minBalanceFee) : IBankAccount(accNumber, balance, intRate)
 {
@@ -25,20 +31,21 @@ CheckingAccount::CheckingAccount(int accNumber, long long balance, double intRat
 }
 
 //***************************************************************************
-// Destructor:    
+// Destructor:    CheckingAccount
 //
-// Description: 
+// Description:   Destructor for the CheckingAccount class
 //***************************************************************************
 CheckingAccount::~CheckingAccount() {}
 
 //***************************************************************************
-// Function:    
+// Function:    deposit
 //
-// Description: 
+// Description: Adds the depositAmount to the balance then checks to make sure
+//              the current balance is not below the minimumBalance
 //
-// Parameters:  
+// Parameters:  depositAmount - the amount added to the account balance
 //
-// Returned:    
+// Returned:    none
 //***************************************************************************
 void CheckingAccount::deposit(long long depositAmount)
 {
@@ -51,13 +58,14 @@ void CheckingAccount::deposit(long long depositAmount)
 }
 
 //***************************************************************************
-// Function:    
+// Function:    withdraw
 //
-// Description: 
+// Description: Subtracts the withdrawAmount from the balance then checks to 
+//              make sure the current balance is not below the minimumBalance
 //
-// Parameters:  
+// Parameters:  withdrawAmount - the amount subtracted from the account balance
 //
-// Returned:    
+// Returned:    none
 //***************************************************************************
 void CheckingAccount::withdraw(long long withdrawAmount)
 {
@@ -70,13 +78,13 @@ void CheckingAccount::withdraw(long long withdrawAmount)
 }
 
 //***************************************************************************
-// Function:    
+// Function:    updateMonth
 //
-// Description: 
+// Description: adds interest to the account by calling the super class function
 //
-// Parameters:  
+// Parameters:  none
 //
-// Returned:    
+// Returned:    none
 //***************************************************************************
 void CheckingAccount::updateMonth()
 {
@@ -84,13 +92,13 @@ void CheckingAccount::updateMonth()
 }
 
 //***************************************************************************
-// Function:    
+// Function:    print
 //
-// Description: 
+// Description: prints the account information to a stream
 //
-// Parameters:  
+// Parameters:  rcOut - the stream to where the information is printed
 //
-// Returned:    
+// Returned:    a reference to the ostream object for chaining
 //***************************************************************************
 std::ostream& CheckingAccount::print(std::ostream& rcOut) const
 {

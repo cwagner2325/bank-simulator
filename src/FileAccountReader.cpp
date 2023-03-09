@@ -17,11 +17,11 @@
 #include "CheckingAccount.h"
 
 //***************************************************************************
-// Constructor:    
+// Constructor:    FileAccountReader
 //
-// Description: 
+// Description:    opens a file for reading from a string
 //
-// Parameters:   
+// Parameters:     filename - the name of the file that is opened
 //***************************************************************************
 FileAccountReader::FileAccountReader(std::string filename)
 {
@@ -29,9 +29,9 @@ FileAccountReader::FileAccountReader(std::string filename)
 }
 
 //***************************************************************************
-// Destructor:    
+// Destructor:    FileAccountReader
 //
-// Description: 
+// Description:   closes the input file when the object is destroyed
 //***************************************************************************
 FileAccountReader::~FileAccountReader()
 {
@@ -39,13 +39,13 @@ FileAccountReader::~FileAccountReader()
 }
 
 //***************************************************************************
-// Function:    
+// Function:    readAccount
+//  
+// Description: reads an account and calls the correct constructor
 //
-// Description: 
+// Parameters:  none
 //
-// Parameters:  
-//
-// Returned:    
+// Returned:    a shared pointer to the bank account object that is read in
 //***************************************************************************
 std::shared_ptr<IBankAccount> FileAccountReader::readAccount()
 {
@@ -82,13 +82,14 @@ std::shared_ptr<IBankAccount> FileAccountReader::readAccount()
 }
 
 //***************************************************************************
-// Function:    
+// Function:    readAll
 //
-// Description: 
+// Description: reads all the accounts in the file and puts them into a vector
 //
-// Parameters:  
+// Parameters:  rcAccounts - the to a reference to a vector that stores the
+//                           accounts read in
 //
-// Returned:    
+// Returned:    none
 //***************************************************************************
 void FileAccountReader::readAll(std::vector<std::shared_ptr<IBankAccount>>& rcAccounts)
 {

@@ -11,11 +11,17 @@
 #include "SavingsAccount.h"
 
 //***************************************************************************
-// Constructor:    
+// Constructor:    SavingsAccount
 //
-// Description: 
+// Description:     Calls the super class constructor and then sets its own 
+//                  mebmber variables to initalize a savings account object
 //
-// Parameters:  
+// Parameters:      accNumber  - The account number of the new account
+//                  balance    - The initial balance of the new account
+//                  intRate    - The interest rate of the new account
+//                  monthlyFee - The fee charged if the minimum is reached
+//                  minMonthly - The minimum balance of the account before 
+//                                  a fee incurs for the month
 //***************************************************************************
 SavingsAccount::SavingsAccount(int accNumber, long long balance, double intRate,
                 long long monthlyFee, long long minMonthly) : 
@@ -27,20 +33,21 @@ SavingsAccount::SavingsAccount(int accNumber, long long balance, double intRate,
 }
 
 //***************************************************************************
-// Destructor:    
+// Destructor:    SavingsAccount
 //
-// Description: 
+// Description:   Destructor for the SavingsAccount class
 //***************************************************************************
 SavingsAccount::~SavingsAccount() {};
 
 //***************************************************************************
-// Function:    
+// Function:    withdraw
 //
-// Description: 
+// Description: Subtracts the withdrawAmount from the balance then checks to 
+//              make sure the current balance is not below the minimumBalance
 //
-// Parameters:  
+// Parameters:  withdrawAmount - the amount subtracted from the account balance
 //
-// Returned:    
+// Returned:    none
 //***************************************************************************
 void SavingsAccount::withdraw(long long withdrawAmount)
 {
@@ -53,13 +60,15 @@ void SavingsAccount::withdraw(long long withdrawAmount)
 }
 
 //***************************************************************************
-// Function:    
+// Function:    updateMonth
 //
-// Description: 
+// Description: checks if a fee has incurred for the month then adds interest
+//              to the account by calling the super class function. Lastly, 
+//              checks if the account remains below the minimum balance
 //
-// Parameters:  
+// Parameters:  none
 //
-// Returned:    
+// Returned:    none
 //***************************************************************************
 void SavingsAccount::updateMonth()
 {
@@ -74,18 +83,18 @@ void SavingsAccount::updateMonth()
 }
 
 //***************************************************************************
-// Function:    
+// Function:    print
 //
-// Description: 
+// Description: prints the account information to a stream
 //
-// Parameters:  
+// Parameters:  rcOut - the stream to where the information is printed
 //
-// Returned:    
+// Returned:    a reference to the ostream object for chaining
 //***************************************************************************
 std::ostream& SavingsAccount::print(std::ostream& rcOut) const
 {
   IBankAccount::print(rcOut);
   rcOut << ", " << mMonthlyFee << ", " << mMinMonthlyBalance;
-  
+
   return rcOut;
 }
