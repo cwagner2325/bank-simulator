@@ -7,9 +7,12 @@
 // Purpose:    Implementation for IBankAccount
 //********************************************************
 
-#include "IBankAccount.h"
 #include <string>
 #include <iostream>
+#include <iomanip>
+
+#include "IBankAccount.h"
+
 
 //***************************************************************************
 // Constructor:    
@@ -68,12 +71,25 @@ void IBankAccount::withdraw(long long withdrawAmount)
 //
 // Returned:    
 //***************************************************************************
-std::string IBankAccount::toString() const
+std::ostream& IBankAccount::print(std::ostream& rcOut) const
 {
-  return std::to_string(mAccountNumber) + ", $" + std::to_string(mBalance) + ", "
-         + std::to_string(mInterestRate) + "%";
+  const double DECIMAL = 100;
+
+  rcOut << mAccountNumber << ", $" << std::fixed << std::setprecision(2) 
+        << mBalance / DECIMAL << ", " << (mInterestRate * DECIMAL) << "%";
+
+  return rcOut;
 }
 
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
 bool IBankAccount::equals(int otherAccount)
 {
   return mAccountNumber == otherAccount;
@@ -90,7 +106,7 @@ bool IBankAccount::equals(int otherAccount)
 //***************************************************************************
 std::ostream& operator<<(std::ostream& rcOut, const IBankAccount& rcAccount)
 {
-  rcOut << rcAccount.toString();
+  rcAccount.print(rcOut);
 
   return rcOut;
 }

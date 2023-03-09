@@ -37,7 +37,7 @@ class IBankAccount
 
     virtual void updateMonth() = 0;
 
-    virtual std::string toString() const; 
+    virtual std::ostream& print(std::ostream&) const; 
 
     virtual bool equals(int);
 

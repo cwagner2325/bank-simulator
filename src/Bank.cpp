@@ -65,12 +65,27 @@ std::shared_ptr<IBankAccount> Bank::findAccount(int key)
 //***************************************************************************
 void Bank::printAll()
 {
-  std::cout << "-----" << std::endl;
+  const int NUM_CHARS = 13;
+  const char BORDER_CHAR = '-';
+
+  for (int i = 0; i < NUM_CHARS; i++) 
+  {
+    std::cout << BORDER_CHAR;
+  }
+
+  std::cout << std::endl;
+
   for (int i = 0; i < static_cast<int> (mapcAccounts.size()); i++)
   {
-    std::cout << mapcAccounts.at(i)->toString() << std::endl;
+    mapcAccounts.at(i)->print(std::cout) << std::endl;
   }
-  std::cout << "-----" << std::endl;
+
+  for (int i = 0; i < NUM_CHARS; i++) 
+  {
+    std::cout << BORDER_CHAR;
+  }
+
+  std::cout << std::endl;
 }
 
 //***************************************************************************

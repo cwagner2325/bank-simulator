@@ -92,8 +92,10 @@ void CheckingAccount::updateMonth()
 //
 // Returned:    
 //***************************************************************************
-std::string CheckingAccount::toString() const
+std::ostream& CheckingAccount::print(std::ostream& rcOut) const
 {
-  return IBankAccount::toString() + ", " + std::to_string(mMinBalance) + 
-         ", " + std::to_string(mMinBalanceFee);
+  IBankAccount::print(rcOut);
+  rcOut << ", " << mMinBalance << ", " << mMinBalanceFee;
+
+  return rcOut;
 }

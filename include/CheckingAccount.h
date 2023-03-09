@@ -29,5 +29,5 @@ class CheckingAccount : public IBankAccount
 
     virtual void updateMonth();
 
-    virtual std::string toString() const; 
+    virtual std::ostream& print(std::ostream&) const; 
 };
