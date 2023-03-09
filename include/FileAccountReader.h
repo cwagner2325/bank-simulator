@@ -8,10 +8,12 @@
 //********************************************************
 
 #pragma once
+
 #include <iostream>
 #include <string>
 #include <memory>
 #include <fstream>
+#include <vector>
 
 #include "IAccountReader.h"
 
@@ -25,5 +27,6 @@ class FileAccountReader : public IAccountReader
     virtual ~FileAccountReader();
 
     virtual std::shared_ptr<IBankAccount> readAccount();
+    virtual void readAll(std::vector<std::shared_ptr<IBankAccount>>&);
 
 };

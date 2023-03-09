@@ -9,6 +9,7 @@
 
 #include <memory>
 #include <iostream>
+#include <vector>
 
 #include "FileAccountReader.h"
 #include "IBankAccount.h"
@@ -78,4 +79,23 @@ std::shared_ptr<IBankAccount> FileAccountReader::readAccount()
   }
 
   return nullptr;
+}
+
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
+void FileAccountReader::readAll(std::vector<std::shared_ptr<IBankAccount>>& rcAccounts)
+{
+  std::shared_ptr<IBankAccount> pcAccount;
+
+  while (nullptr != (pcAccount = readAccount()))
+  {
+    rcAccounts.push_back(pcAccount);
+  }
 }
