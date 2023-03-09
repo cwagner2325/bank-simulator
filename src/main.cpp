@@ -1,9 +1,9 @@
 //***************************************************************************
 // File name:   main.cpp
-// Author:      
-// Date:        
-// Class:       
-// Assignment:  
+// Author:      Cayden Wagner
+// Date:        March 8, 2023
+// Class:       AOO - CS485
+// Assignment:  Bank
 // Purpose:     
 //***************************************************************************
 
@@ -11,19 +11,28 @@
 #include <vector> 
 #include <string>
 #include <sstream>
+#include <memory>
+
+#include "Bank.h"
+#include "FileAccountReader.h"
+
 
 //***************************************************************************
 // Function:    main
 //
-// Description: Print hi!
+// Description: 
 //
-// Parameters:  none
+// Parameters:  
 //
-// Returned:    EXIT_SUCCESS
+// Returned:    
 //***************************************************************************
 int main()
 {
-    std::string cMessage = "hi!";
-    std::cout << ">> " << cMessage << " << " << std::endl;  
-    return EXIT_SUCCESS;
+  const std::string ACCOUNTS_FILE = "data/Accounts.txt";
+
+  std::shared_ptr<IAccountReader> cReader(new FileAccountReader(ACCOUNTS_FILE));
+  Bank* cTheBank(new Bank(cReader));
+
+  cTheBank->printAll();
+
 }

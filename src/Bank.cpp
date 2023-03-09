@@ -21,9 +21,9 @@
 //
 // Parameters:  
 //***************************************************************************
-Bank::Bank(IAccountReader& rcReader)
+Bank::Bank(std::shared_ptr<IAccountReader>& rcReader)
 {
-  rcReader.readAll(mapcAccounts);
+  rcReader->readAll(mapcAccounts);
 }
 
 //***************************************************************************

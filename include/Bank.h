@@ -21,17 +21,17 @@ class Bank
     std::vector<std::shared_ptr<IBankAccount>> mapcAccounts;
 
   public:
-    Bank(IAccountReader&);
+    Bank(std::shared_ptr<IAccountReader>&);
     virtual ~Bank();
 
-    virtual void doBankOperations();
+    //virtual void doBankOperations();
 
     std::shared_ptr<IBankAccount> findAccount(int);
 
     virtual void printAll();
-    virtual void updateMonth();
+   // virtual void updateMonth();
 
-    virtual void deposit(int, long long);
-    virtual void withdraw(int, long long);
+    //virtual void deposit(int, long long);
+   // virtual void withdraw(int, long long);
 };
 

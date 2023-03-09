@@ -70,8 +70,8 @@ void IBankAccount::withdraw(long long withdrawAmount)
 //***************************************************************************
 std::string IBankAccount::toString() const
 {
-  return mAccountNumber + ", $" + std::to_string(mBalance) + ", " +
-         std::to_string(mInterestRate) + "%";
+  return std::to_string(mAccountNumber) + ", $" + std::to_string(mBalance) + ", "
+         + std::to_string(mInterestRate) + "%";
 }
 
 bool IBankAccount::equals(int otherAccount)
