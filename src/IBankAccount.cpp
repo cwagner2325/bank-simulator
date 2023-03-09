@@ -10,6 +10,7 @@
 #include <string>
 #include <iostream>
 #include <iomanip>
+#include <math.h>
 
 #include "IBankAccount.h"
 
@@ -26,7 +27,7 @@
 IBankAccount::IBankAccount(int accountNumber, long long balance, double interestRate)
 {
   mAccountNumber = accountNumber;
-  mBalance = balance;
+  mBalance = std::trunc(balance);
   mInterestRate = interestRate;
 }
 
@@ -48,7 +49,7 @@ IBankAccount::~IBankAccount() {}
 //***************************************************************************
 void IBankAccount::deposit(long long depositAmount)
 {
-  mBalance += depositAmount;
+  mBalance += std::trunc(depositAmount);
 }
 
 //***************************************************************************
@@ -62,7 +63,7 @@ void IBankAccount::deposit(long long depositAmount)
 //***************************************************************************
 void IBankAccount::withdraw(long long withdrawAmount)
 {
-  mBalance -= withdrawAmount;
+  mBalance -= std::trunc(withdrawAmount);
 }
 //***************************************************************************
 // Function:    primt
@@ -139,6 +140,6 @@ void IBankAccount::addInterest()
 {
   if (!isBelow(0))
   {
-    mBalance += mBalance * mInterestRate;
+    mBalance += std::trunc(mBalance * mInterestRate);
   }
 }
