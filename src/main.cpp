@@ -32,7 +32,7 @@ int main()
   const std::string ACCOUNTS_FILE = "data/Accounts.txt";
 
   std::shared_ptr<IAccountReader> cReader(new FileAccountReader(ACCOUNTS_FILE));
-  Bank* cTheBank(new Bank(cReader));
+  std::shared_ptr<Bank> cTheBank(new Bank(cReader));
 
   cTheBank->printAll();
   cTheBank->updateMonth();
