@@ -17,9 +17,11 @@ class IBankAccount
 
     int mAccountNumber;
 
-    long long mBalance;
+  protected: 
 
     double mInterestRate;
+
+    long long mBalance;
       
   public:
 

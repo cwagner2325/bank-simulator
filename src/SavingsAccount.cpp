@@ -1,15 +1,14 @@
 //********************************************************
-// File name:  IBankAccount.cpp
+// File name:  SavingsAccount.cpp
 // Author:     Cayden Wagner
 // Date:       3/8/2023
 // Class:      CS380
 // Assignment: Bank
-// Purpose:    Implementation for IBankAccount
+// Purpose:    To implement SavingsAccount 
 //********************************************************
 
 #include "IBankAccount.h"
-#include <string>
-#include <iostream>
+#include "SavingsAccount.h"
 
 //***************************************************************************
 // Constructor:    
@@ -18,11 +17,13 @@
 //
 // Parameters:  
 //***************************************************************************
-IBankAccount::IBankAccount(int accountNumber, long long balance, double interestRate)
+SavingsAccount::SavingsAccount(int accNumber, long long balance, double intRate,
+                long long monthlyFee, double minMonthly) : 
+                IBankAccount(accNumber, balance, intRate)
 {
-  mAccountNumber = accountNumber;
-  mBalance = balance;
-  mInterestRate = interestRate;
+  mMonthlyFee = monthlyFee;
+  mMinMonthlyBalance = minMonthly;
+  mMonthlyFeeReached = false;
 }
 
 //***************************************************************************
@@ -30,7 +31,7 @@ IBankAccount::IBankAccount(int accountNumber, long long balance, double interest
 //
 // Description: 
 //***************************************************************************
-IBankAccount::~IBankAccount() {}
+SavingsAccount::~SavingsAccount() {};
 
 //***************************************************************************
 // Function:    
@@ -41,9 +42,14 @@ IBankAccount::~IBankAccount() {}
 //
 // Returned:    
 //***************************************************************************
-void IBankAccount::deposit(long long depositAmount)
+void SavingsAccount::withdraw(long long withdrawAmount)
 {
-  mBalance += depositAmount;
+  IBankAccount::withdraw(withdrawAmount);
+
+  if (mBalance < mMinMonthlyBalance) 
+  {
+    mMonthlyFee = true;
+  }
 }
 
 //***************************************************************************
@@ -55,28 +61,19 @@ void IBankAccount::deposit(long long depositAmount)
 //
 // Returned:    
 //***************************************************************************
-void IBankAccount::withdraw(long long withdrawAmount)
+void SavingsAccount::updateMonth()
 {
-  mBalance -= withdrawAmount;
-}
-//***************************************************************************
-// Function:    
-//
-// Description: 
-//
-// Parameters:  
-//
-// Returned:    
-//***************************************************************************
-std::string IBankAccount::toString() const
-{
-  return mAccountNumber + ", $" + std::to_string(mBalance) + ", " +
-         std::to_string(mInterestRate) + "%";
-}
+  if (mMonthlyFee) 
+  {
+    mBalance -= mMonthlyFee;
+  }
 
-bool IBankAccount::equals(int otherAccount)
-{
-  return mAccountNumber == otherAccount;
+  if (mBalance > 0) 
+  {
+    mBalance += mBalance * mInterestRate;
+  }
+
+  mMonthlyFee = mBalance < mMinMonthlyBalance;
 }
 
 //***************************************************************************
@@ -88,9 +85,8 @@ bool IBankAccount::equals(int otherAccount)
 //
 // Returned:    
 //***************************************************************************
-std::ostream& operator<<(std::ostream& rcOut, const IBankAccount& rcAccount)
+std::string SavingsAccount::toString() const
 {
-  rcOut << rcAccount.toString();
-
-  return rcOut;
+  return IBankAccount::toString() + ", " + std::to_string(mMonthlyFee) + 
+         ", " + std::to_string(mMinMonthlyBalance);
 }
