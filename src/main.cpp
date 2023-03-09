@@ -15,8 +15,10 @@
 #include <memory>
 
 #include "Bank.h"
+#include "IAccountReader.h"
 #include "FileAccountReader.h"
-
+#include "ICommandReader.h"
+#include "FileCommandReader.h"
 
 //***************************************************************************
 // Function:    main
@@ -30,27 +32,30 @@
 int main()
 {
   const std::string ACCOUNTS_FILE = "data/Accounts.txt";
+  const std::string COMMANDS_FILE = "data/Commands.txt";
 
-  std::shared_ptr<IAccountReader> pcReader(new FileAccountReader(ACCOUNTS_FILE));
-  std::shared_ptr<Bank> pcTheBank(new Bank(pcReader));
+  std::shared_ptr<IAccountReader> pcAccountReader(new FileAccountReader(ACCOUNTS_FILE));
+  std::shared_ptr<ICommandReader> pcCommandReader(new FileCommandReader(COMMANDS_FILE))
+  std::shared_ptr<Bank> pcTheBank(new Bank(pcAccountReader));
+  
 
-  pcTheBank->printAll();
-  pcTheBank->updateMonth();
-  pcTheBank->printAll();
-  pcTheBank->withdraw(1, 10);
-  pcTheBank->withdraw(2, 10);
-  pcTheBank->printAll();
-  pcTheBank->deposit(1, 10);
-  pcTheBank->deposit(2, 10);
-  pcTheBank->printAll();
-  pcTheBank->withdraw(2, 960);
-  pcTheBank->printAll();
-  pcTheBank->withdraw(1, 900);
-  pcTheBank->printAll();
-  pcTheBank->updateMonth();
-  pcTheBank->printAll();
-  pcTheBank->updateMonth();
-  pcTheBank->printAll();
+  // pcTheBank->printAll();
+  // pcTheBank->updateMonth();
+  // pcTheBank->printAll();
+  // pcTheBank->withdraw(1, 10);
+  // pcTheBank->withdraw(2, 10);
+  // pcTheBank->printAll();
+  // pcTheBank->deposit(1, 10);
+  // pcTheBank->deposit(2, 10);
+  // pcTheBank->printAll();
+  // pcTheBank->withdraw(2, 960);
+  // pcTheBank->printAll();
+  // pcTheBank->withdraw(1, 900);
+  // pcTheBank->printAll();
+  // pcTheBank->updateMonth();
+  // pcTheBank->printAll();
+  // pcTheBank->updateMonth();
+  // pcTheBank->printAll();
 
   return EXIT_SUCCESS;
 }

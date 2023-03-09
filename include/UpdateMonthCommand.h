@@ -17,7 +17,7 @@
 
 #include "ICommand.h"
 
-class UpdateMonthCommand : ICommand
+class UpdateMonthCommand : public ICommand
 {
   public:
     UpdateMonthCommand();

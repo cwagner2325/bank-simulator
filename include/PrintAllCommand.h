@@ -17,7 +17,7 @@
 
 #include "ICommand.h"
 
-class PrintAllCommand : ICommand
+class PrintAllCommand : public ICommand
 {
   public:
     PrintAllCommand();

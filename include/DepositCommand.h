@@ -16,8 +16,9 @@
 #include <vector>
 
 #include "ICommand.h"
+#include "Bank.h"
 
-class DepositCommand : ICommand
+class DepositCommand : public ICommand
 {
   public:
     DepositCommand(int, long long);

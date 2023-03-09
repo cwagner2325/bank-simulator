@@ -17,7 +17,7 @@
 
 #include "ICommand.h"
 
-class WithdrawCommand : ICommand
+class WithdrawCommand : public ICommand
 {
   public:
     WithdrawCommand(int, long long);

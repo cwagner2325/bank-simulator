@@ -20,7 +20,7 @@
 class ICommand
 {
   public:
-    virtual ~ICommand();
+    virtual ~ICommand() {};
 
     virtual void execute(Bank&) = 0;
 

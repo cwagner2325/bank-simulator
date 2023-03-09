@@ -13,6 +13,11 @@
 #include <vector>
 
 #include "FileCommandReader.h"
+#include "ICommand.h"
+#include "PrintAllCommand.h"
+#include "UpdateMonthCommand.h"
+#include "DepositCommand.h"
+#include "WithdrawCommand.h"
 
 //***************************************************************************
 // Constructor:    FileCommandReader
@@ -45,7 +50,42 @@ FileCommandReader::~FileCommandReader()
 //
 // Returned:    
 //***************************************************************************
-// virtual std::shared_ptr<ICommand> readCommand();
+std::shared_ptr<ICommand> FileCommandReader::readCommand()
+{
+  const char PRINT_ALL = 'P';
+  const char UPDATE_MONTH = 'M';
+  const char DEPOSIT_COMMAND = 'D';
+  const char WITHDRAW_COMMAND = 'W';
+
+  char commandIdentity = '.';
+  int accountNumber = 0;
+  long long amount = 0;
+
+  std::shared_ptr<ICommand> pcCommand = nullptr;
+
+  mcInFile >> commandIdentity;
+
+  if (PRINT_ALL == commandIdentity) 
+  {
+    pcCommand = std::make_shared<PrintAllCommand> ();
+  }
+  else if (UPDATE_MONTH == commandIdentity)
+  {
+    pcCommand = std::make_shared<UpdateMonthCommand> ();
+  }
+  else if (DEPOSIT_COMMAND == commandIdentity)
+  {
+    mcInFile >> accountNumber >> amount;
+    pcCommand = std::make_shared<DepositCommand> (accountNumber, amount);
+  }
+  else if (WITHDRAW_COMMAND == commandIdentity)
+  {
+    mcInFile >> accountNumber >> amount;
+    pcCommand = std::make_shared<WithdrawCommand> (accountNumber, amount);
+  }
+
+  return pcCommand;
+}
 
 //***************************************************************************
 // Function:    
@@ -56,4 +96,12 @@ FileCommandReader::~FileCommandReader()
 //
 // Returned:    
 //***************************************************************************
-// virtual void readAll(std::vector<std::shared_ptr<ICommand>>&);
+void FileCommandReader::readAll(std::vector<std::shared_ptr<ICommand>>& rcCommands)
+{
+  std::shared_ptr<ICommand> pcCommand;
+
+  while (nullptr != (pcCommand = readCommand()))
+  {
+    rcCommands.push_back(pcCommand);
+  }
+}

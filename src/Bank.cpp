@@ -35,6 +35,26 @@ Bank::Bank(std::shared_ptr<IAccountReader>& rcReader)
 Bank::~Bank() {}
 
 //***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
+void Bank::doBankOperations(std::shared_ptr<ICommandReader>& rcReader)
+{
+  std::vector<std::shared_ptr<ICommand>> acCommands;
+
+  rcReader->readAll(acCommands);
+
+  for (int i = 0; i < static_cast<int> (acCommands.size()); i++) 
+  {
+    //acCommands.at(i)->execute(this);
+  }
+}
+//***************************************************************************
 // Function:    findAccount
 //
 // Description: finds an account in the account vector based on an account number

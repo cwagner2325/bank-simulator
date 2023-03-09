@@ -14,6 +14,7 @@
 
 #include "IAccountReader.h"
 #include "IBankAccount.h"
+#include "ICommandReader.h"
 
 class Bank
 {
@@ -24,7 +25,7 @@ class Bank
     Bank(std::shared_ptr<IAccountReader>&);
     virtual ~Bank();
 
-    //virtual void doBankOperations();
+   virtual void doBankOperations(std::shared_ptr<ICommandReader>&);
 
     std::shared_ptr<IBankAccount> findAccount(int);
 
