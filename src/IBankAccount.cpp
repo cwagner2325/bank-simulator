@@ -15,11 +15,13 @@
 
 
 //***************************************************************************
-// Constructor:    
+// Constructor:    IBankAccount
 //
-// Description: 
+// Description:    Initalizes a IBankAccount object by stting member variables
 //
-// Parameters:  
+// Parameters:     accountNumber - the account number for the new bank account
+//                 balance       - the inital balance for the new account
+//                 interestRate  - the interest rate for the new account
 //***************************************************************************
 IBankAccount::IBankAccount(int accountNumber, long long balance, double interestRate)
 {
@@ -29,20 +31,20 @@ IBankAccount::IBankAccount(int accountNumber, long long balance, double interest
 }
 
 //***************************************************************************
-// Destructor:    
+// Destructor:    IBankAccount
 //
-// Description: 
+// Description:   Destructor for IBankAccount
 //***************************************************************************
 IBankAccount::~IBankAccount() {}
 
 //***************************************************************************
-// Function:    
+// Function:      deposit
 //
-// Description: 
+// Description:   Adds a deposit amount to the account balance
 //
-// Parameters:  
+// Parameters:    depositAmount - the amount added to the account balance
 //
-// Returned:    
+// Returned:      none
 //***************************************************************************
 void IBankAccount::deposit(long long depositAmount)
 {
@@ -50,26 +52,26 @@ void IBankAccount::deposit(long long depositAmount)
 }
 
 //***************************************************************************
-// Function:    
+// Function:      withdraw
 //
-// Description: 
+// Description:   Subtracts a withdraw amount from the account balance
 //
-// Parameters:  
+// Parameters:    withdrawAmount - the amount subtracted from the account balance
 //
-// Returned:    
+// Returned:      none
 //***************************************************************************
 void IBankAccount::withdraw(long long withdrawAmount)
 {
   mBalance -= withdrawAmount;
 }
 //***************************************************************************
-// Function:    
+// Function:    primt
 //
-// Description: 
+// Description: prints the account information to a stream
 //
-// Parameters:  
+// Parameters:  rcOut - the stream to which the information is printed
 //
-// Returned:    
+// Returned:    a reference to the ostream object to allow chaining
 //***************************************************************************
 std::ostream& IBankAccount::print(std::ostream& rcOut) const
 {
@@ -82,13 +84,13 @@ std::ostream& IBankAccount::print(std::ostream& rcOut) const
 }
 
 //***************************************************************************
-// Function:    
+// Function:    equals
 //
-// Description: 
+// Description: determines if an an integer matches the account number
 //
-// Parameters:  
+// Parameters:  otherAccount - an integer that is checked for equality
 //
-// Returned:    
+// Returned:    true if there is a match, else false
 //***************************************************************************
 bool IBankAccount::equals(int otherAccount)
 {
@@ -96,29 +98,28 @@ bool IBankAccount::equals(int otherAccount)
 }
 
 //***************************************************************************
-// Function:    
+// Operator:    <<
 //
-// Description: 
+// Description: Calls print polymorhpically on a base IBankAccount object
 //
-// Parameters:  
+// Parameters:  rcOut     - the stream to which the account is printed
+//              rcAccount - the account that is printed
 //
-// Returned:    
+// Returned:    a reference to the ostream object to allow chaining
 //***************************************************************************
 std::ostream& operator<<(std::ostream& rcOut, const IBankAccount& rcAccount)
 {
-  rcAccount.print(rcOut);
-
-  return rcOut;
+  return rcAccount.print(rcOut);
 }
 
 //***************************************************************************
-// Function:    
+// Function:    isBelow
 //
-// Description: 
+// Description: determines if the account balance is below a given amount
 //
-// Parameters:  
+// Parameters:  amount - the amount that is compared against
 //
-// Returned:    
+// Returned:    true if the account balance is below the argument, else false
 //***************************************************************************
 bool IBankAccount::isBelow(long long amount)
 {
@@ -126,13 +127,13 @@ bool IBankAccount::isBelow(long long amount)
 }
 
 //***************************************************************************
-// Function:    
+// Function:    addInterest
 //
-// Description: 
+// Description: adds interest to an account if that account has a positive balance
 //
-// Parameters:  
+// Parameters:  none
 //
-// Returned:    
+// Returned:    none
 //***************************************************************************
 void IBankAccount::addInterest()
 {

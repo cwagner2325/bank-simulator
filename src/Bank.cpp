@@ -77,7 +77,7 @@ void Bank::printAll()
 
   for (int i = 0; i < static_cast<int> (mapcAccounts.size()); i++)
   {
-    mapcAccounts.at(i)->print(std::cout) << std::endl;
+   std::cout << *mapcAccounts.at(i) << std::endl;
   }
 
   for (int i = 0; i < NUM_CHARS; i++) 
