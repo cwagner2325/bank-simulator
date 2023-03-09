@@ -70,7 +70,7 @@ void SavingsAccount::updateMonth()
 
   addInterest();
 
-  mMonthlyFee = isBelow(mMinMonthlyBalance);
+  mbMonthlyFeeReached = isBelow(mMinMonthlyBalance);
 }
 
 //***************************************************************************

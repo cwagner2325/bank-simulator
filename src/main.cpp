@@ -34,5 +34,21 @@ int main()
   Bank* cTheBank(new Bank(cReader));
 
   cTheBank->printAll();
+  cTheBank->updateMonth();
+  cTheBank->printAll();
+  cTheBank->withdraw(1, 10);
+  cTheBank->withdraw(2, 10);
+  cTheBank->printAll();
+  cTheBank->deposit(1, 10);
+  cTheBank->deposit(2, 10);
+  cTheBank->printAll();
+  cTheBank->withdraw(2, 960);
+  cTheBank->printAll();
+  cTheBank->withdraw(1, 900);
+  cTheBank->printAll();
+  cTheBank->updateMonth();
+  cTheBank->printAll();
+  cTheBank->updateMonth();
+  cTheBank->printAll();
 
 }

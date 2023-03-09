@@ -65,13 +65,65 @@ std::shared_ptr<IBankAccount> Bank::findAccount(int key)
 //***************************************************************************
 void Bank::printAll()
 {
+  std::cout << "-----" << std::endl;
   for (int i = 0; i < static_cast<int> (mapcAccounts.size()); i++)
   {
     std::cout << mapcAccounts.at(i)->toString() << std::endl;
   }
+  std::cout << "-----" << std::endl;
 }
 
-// virtual void updateMonth();
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
+void Bank::updateMonth()
+{
+  for (int i = 0; i < static_cast<int> (mapcAccounts.size()); i++)
+  {
+    mapcAccounts.at(i)->updateMonth();
+  }
+}
 
-// virtual void deposit(int, long long);
-// virtual void withdraw(int, long long);
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
+void Bank::deposit(int accountNumber, long long depositAmount)
+{
+  std::shared_ptr<IBankAccount> pcAccount = findAccount(accountNumber);
+
+  if (nullptr != pcAccount)
+  {
+    pcAccount->deposit(depositAmount);
+  }
+}
+
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
+void Bank::withdraw(int accountNumber, long long withdrawAmount)
+{
+  std::shared_ptr<IBankAccount> pcAccount = findAccount(accountNumber);
+
+  if (nullptr != pcAccount)
+  {
+    pcAccount->withdraw(withdrawAmount);
+  }
+}
