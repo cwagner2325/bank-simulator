@@ -31,26 +31,26 @@ int main()
 {
   const std::string ACCOUNTS_FILE = "data/Accounts.txt";
 
-  std::shared_ptr<IAccountReader> cReader(new FileAccountReader(ACCOUNTS_FILE));
-  std::shared_ptr<Bank> cTheBank(new Bank(cReader));
+  std::shared_ptr<IAccountReader> pcReader(new FileAccountReader(ACCOUNTS_FILE));
+  std::shared_ptr<Bank> pcTheBank(new Bank(pcReader));
 
-  cTheBank->printAll();
-  cTheBank->updateMonth();
-  cTheBank->printAll();
-  cTheBank->withdraw(1, 10);
-  cTheBank->withdraw(2, 10);
-  cTheBank->printAll();
-  cTheBank->deposit(1, 10);
-  cTheBank->deposit(2, 10);
-  cTheBank->printAll();
-  cTheBank->withdraw(2, 960);
-  cTheBank->printAll();
-  cTheBank->withdraw(1, 900);
-  cTheBank->printAll();
-  cTheBank->updateMonth();
-  cTheBank->printAll();
-  cTheBank->updateMonth();
-  cTheBank->printAll();
+  pcTheBank->printAll();
+  pcTheBank->updateMonth();
+  pcTheBank->printAll();
+  pcTheBank->withdraw(1, 10);
+  pcTheBank->withdraw(2, 10);
+  pcTheBank->printAll();
+  pcTheBank->deposit(1, 10);
+  pcTheBank->deposit(2, 10);
+  pcTheBank->printAll();
+  pcTheBank->withdraw(2, 960);
+  pcTheBank->printAll();
+  pcTheBank->withdraw(1, 900);
+  pcTheBank->printAll();
+  pcTheBank->updateMonth();
+  pcTheBank->printAll();
+  pcTheBank->updateMonth();
+  pcTheBank->printAll();
 
   return EXIT_SUCCESS;
 }
