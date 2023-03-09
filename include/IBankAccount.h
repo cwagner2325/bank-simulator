@@ -17,12 +17,16 @@ class IBankAccount
 
     int mAccountNumber;
 
-  protected: 
-
     double mInterestRate;
 
     long long mBalance;
-      
+
+  protected: 
+
+    bool isBelow(long long);
+
+    void addInterest();
+ 
   public:
 
     IBankAccount(int, long long, double);

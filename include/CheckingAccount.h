@@ -1,32 +1,30 @@
 //********************************************************
-// File name:  SavingsAccount.h
+// File name:  CheckingAccount.h
 // Author:     Cayden Wagner
 // Date:       3/8/2023
 // Class:      CS380
 // Assignment: Bank
-// Purpose:    To define the header file the SavingsAccount 
+// Purpose:    To define the header file the CheckingAccount 
 //********************************************************
 
 #pragma once
 #include <iostream>
 #include <string>
-
 #include "IBankAccount.h"
 
-class SavingsAccount : public IBankAccount
+class CheckingAccount : public IBankAccount 
 {
   private:
-    long long mMonthlyFee;
 
-    long long mMinMonthlyBalance;
-
-    bool mbMonthlyFeeReached;
+    long long mMinBalance;
+    long long mMinBalanceFee;
       
   public:
 
-    SavingsAccount(int, long long, double, long long, long long);
-    virtual ~SavingsAccount();
+    CheckingAccount(int, long long, double, long long, long long);
+    virtual ~CheckingAccount();
 
+    virtual void deposit(long long);
     virtual void withdraw(long long);
 
     virtual void updateMonth();

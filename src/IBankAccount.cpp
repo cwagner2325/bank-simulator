@@ -94,3 +94,34 @@ std::ostream& operator<<(std::ostream& rcOut, const IBankAccount& rcAccount)
 
   return rcOut;
 }
+
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
+bool IBankAccount::isBelow(long long amount)
+{
+  return mBalance < amount;
+}
+
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
+void IBankAccount::addInterest()
+{
+  if (!isBelow(0))
+  {
+    mBalance += mBalance * mInterestRate;
+  }
+}
