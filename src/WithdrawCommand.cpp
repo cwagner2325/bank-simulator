@@ -7,11 +7,7 @@
 // Purpose:    To impkement the WithdrawCommand 
 //********************************************************
 
-#include <iostream>
-#include <fstream>
-#include <string>
 #include <memory>
-#include <vector>
 
 #include "WithdrawCommand.h"
 
@@ -24,8 +20,10 @@
 //
 // Returned:    
 //***************************************************************************
-WithdrawCommand::WithdrawCommand(int accountNumber, long long withdrawAmount)
+WithdrawCommand::WithdrawCommand(std::shared_ptr<IReceiver> pReceiver, 
+                                 int accountNumber, long long withdrawAmount)
 {
+  mReceiver = pReceiver;
   mAccountNumber = accountNumber;
   mWithdrawAmount = withdrawAmount;
 }
@@ -39,12 +37,7 @@ WithdrawCommand::WithdrawCommand(int accountNumber, long long withdrawAmount)
 //
 // Returned:    
 //***************************************************************************
-void WithdrawCommand::execute(Bank& rcTheBank)
+void WithdrawCommand::execute()
 {
-  std::shared_ptr<IBankAccount> pcAccount = rcTheBank.findAccount(mAccountNumber);
-
-  if (nullptr != pcAccount)
-  {
-    pcAccount->withdraw(mWithdrawAmount);
-  }
+  mReceiver->withdraw(mAccountNumber, mWithdrawAmount);
 }

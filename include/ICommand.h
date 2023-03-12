@@ -7,24 +7,13 @@
 // Purpose:    To define the header file the ICommand 
 //********************************************************
 
-#ifndef _ICommand_H_
-#define _ICommand_H_
-
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <memory>
-#include <vector>
-
-#include "Bank.h"
+#pragma once
 
 class ICommand
 {
   public:
     virtual ~ICommand() {};
 
-    virtual void execute(Bank&) = 0;
+    virtual void execute() = 0;
 
 };
-
-#endif

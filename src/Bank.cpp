@@ -43,17 +43,13 @@ Bank::~Bank() {}
 //
 // Returned:    
 //***************************************************************************
-// void Bank::doBankOperations(std::shared_ptr<ICommandReader>& rcReader)
-// {
-//   std::vector<std::shared_ptr<ICommand>> acCommands;
-
-//   rcReader->readAll(acCommands);
-
-//   for (int i = 0; i < static_cast<int> (acCommands.size()); i++) 
-//   {
-//     //acCommands.at(i)->execute(this);
-//   }
-// }
+void Bank::executeCommands(std::vector<std::shared_ptr<ICommand>>& acCommands)
+{
+  for (int i = 0; i < static_cast<int> (acCommands.size()); i++) 
+  {
+    acCommands.at(i)->execute();
+  }
+}
 //***************************************************************************
 // Function:    findAccount
 //

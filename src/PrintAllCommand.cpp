@@ -4,14 +4,10 @@
 // Date:       3/8/2023
 // Class:      CS380
 // Assignment: Bank
-// Purpose:    To implement the UpdateMonthCommand 
+// Purpose:    To implement the PrintAllCommand 
 //********************************************************
 
-#include <iostream>
-#include <fstream>
-#include <string>
 #include <memory>
-#include <vector>
 
 #include "PrintAllCommand.h"
 
@@ -24,9 +20,9 @@
 //
 // Returned:    
 //***************************************************************************
-PrintAllCommand::PrintAllCommand()
+PrintAllCommand::PrintAllCommand(std::shared_ptr<IReceiver> pReceiver)
 {
-
+  mReceiver = pReceiver;
 }
 
 //***************************************************************************
@@ -38,7 +34,7 @@ PrintAllCommand::PrintAllCommand()
 //
 // Returned:    
 //***************************************************************************
-void PrintAllCommand::execute(Bank& rcTheBank)
+void PrintAllCommand::execute()
 {
-  rcTheBank.printAll();
+  mReceiver->printAll();
 }

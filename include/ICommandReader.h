@@ -7,15 +7,13 @@
 // Purpose:    To define the header file the ICommandReader 
 //********************************************************
 
-#ifndef _ICommandReader_H_
-#define _ICommandReader_H_
+#pragma once
 
-#include <iostream>
-#include <string>
 #include <memory>
 #include <vector>
 
 #include "ICommand.h"
+#include "IReceiver.h"
 
 class ICommandReader 
 {
@@ -23,9 +21,7 @@ class ICommandReader
 
     virtual ~ICommandReader() {};
 
-    virtual std::shared_ptr<ICommand> readCommand() = 0;
-    virtual void readAll(std::vector<std::shared_ptr<ICommand>>&) = 0;
+    virtual std::shared_ptr<ICommand> readCommand(std::shared_ptr<IReceiver>) = 0;
+    virtual void readAll(std::shared_ptr<IReceiver>, std::vector<std::shared_ptr<ICommand>>&) = 0;
 
 };
-
-#endif

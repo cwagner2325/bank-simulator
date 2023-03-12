@@ -9,26 +9,25 @@
 
 #pragma once
 
-#include <iostream>
-#include <fstream>
-#include <string>
 #include <memory>
-#include <vector>
 
 #include "ICommand.h"
+#include "IReceiver.h"
 
 class WithdrawCommand : public ICommand
 {
   public:
-    WithdrawCommand(int, long long);
+    WithdrawCommand(std::shared_ptr<IReceiver>, int, long long);
     virtual ~WithdrawCommand() {};
 
-    virtual void execute(Bank&);
+    virtual void execute();
   
   private:
 
     int mAccountNumber;
 
     long long mWithdrawAmount;
+
+    std::shared_ptr<IReceiver> mReceiver;
 
 };

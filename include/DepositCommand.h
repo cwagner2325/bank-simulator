@@ -9,27 +9,26 @@
 
 #pragma once
 
-#include <iostream>
-#include <fstream>
-#include <string>
 #include <memory>
-#include <vector>
 
 #include "ICommand.h"
 #include "Bank.h"
+#include "IReceiver.h"
 
 class DepositCommand : public ICommand
 {
   public:
-    DepositCommand(int, long long);
+    DepositCommand(std::shared_ptr<IReceiver>, int, long long);
     virtual ~DepositCommand() {};
 
-    virtual void execute(Bank&);
+    virtual void execute();
   
   private:
 
     int mAccountNumber;
 
     long long mDepositAmount;
+
+    std::shared_ptr<IReceiver> mReceiver;
 
 };

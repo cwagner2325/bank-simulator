@@ -9,20 +9,21 @@
 
 #pragma once
 
-#include <iostream>
-#include <fstream>
-#include <string>
 #include <memory>
-#include <vector>
 
 #include "ICommand.h"
+#include "IReceiver.h"
 
 class UpdateMonthCommand : public ICommand
 {
   public:
-    UpdateMonthCommand();
+    UpdateMonthCommand(std::shared_ptr<IReceiver>);
     virtual ~UpdateMonthCommand() {};
 
-    virtual void execute(Bank&);
+    virtual void execute();
+
+  private:
+
+    std::shared_ptr<IReceiver> mReceiver;
 
 };

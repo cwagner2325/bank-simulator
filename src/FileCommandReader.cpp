@@ -18,6 +18,7 @@
 #include "UpdateMonthCommand.h"
 #include "DepositCommand.h"
 #include "WithdrawCommand.h"
+#include "IReceiver.h"
 
 //***************************************************************************
 // Constructor:    FileCommandReader
@@ -50,7 +51,7 @@ FileCommandReader::~FileCommandReader()
 //
 // Returned:    
 //***************************************************************************
-std::shared_ptr<ICommand> FileCommandReader::readCommand()
+std::shared_ptr<ICommand> FileCommandReader::readCommand(std::shared_ptr<IReceiver> pReceiver)
 {
   const char PRINT_ALL = 'P';
   const char UPDATE_MONTH = 'M';
@@ -67,21 +68,21 @@ std::shared_ptr<ICommand> FileCommandReader::readCommand()
 
   if (PRINT_ALL == commandIdentity) 
   {
-    pcCommand = std::make_shared<PrintAllCommand> ();
+    pcCommand = std::make_shared<PrintAllCommand> (pReceiver);
   }
   else if (UPDATE_MONTH == commandIdentity)
   {
-    pcCommand = std::make_shared<UpdateMonthCommand> ();
+    pcCommand = std::make_shared<UpdateMonthCommand> (pReceiver);
   }
   else if (DEPOSIT_COMMAND == commandIdentity)
   {
     mcInFile >> accountNumber >> amount;
-    pcCommand = std::make_shared<DepositCommand> (accountNumber, amount);
+    pcCommand = std::make_shared<DepositCommand> (pReceiver, accountNumber, amount);
   }
   else if (WITHDRAW_COMMAND == commandIdentity)
   {
     mcInFile >> accountNumber >> amount;
-    pcCommand = std::make_shared<WithdrawCommand> (accountNumber, amount);
+    pcCommand = std::make_shared<WithdrawCommand> (pReceiver, accountNumber, amount);
   }
 
   return pcCommand;
@@ -96,11 +97,12 @@ std::shared_ptr<ICommand> FileCommandReader::readCommand()
 //
 // Returned:    
 //***************************************************************************
-void FileCommandReader::readAll(std::vector<std::shared_ptr<ICommand>>& rcCommands)
+void FileCommandReader::readAll(std::shared_ptr<IReceiver> pReceiver,
+                                std::vector<std::shared_ptr<ICommand>>& rcCommands)
 {
   std::shared_ptr<ICommand> pcCommand;
 
-  while (nullptr != (pcCommand = readCommand()))
+  while (nullptr != (pcCommand = readCommand(pReceiver)))
   {
     rcCommands.push_back(pcCommand);
   }

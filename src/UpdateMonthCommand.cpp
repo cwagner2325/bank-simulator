@@ -7,11 +7,7 @@
 // Purpose:    To implement the UpdateMonthCommand 
 //********************************************************
 
-#include <iostream>
-#include <fstream>
-#include <string>
 #include <memory>
-#include <vector>
 
 #include "UpdateMonthCommand.h"
 
@@ -24,9 +20,9 @@
 //
 // Returned:    
 //***************************************************************************
-UpdateMonthCommand::UpdateMonthCommand()
+UpdateMonthCommand::UpdateMonthCommand(std::shared_ptr<IReceiver> pReceiver)
 {
-
+  mReceiver = pReceiver;
 }
 
 //***************************************************************************
@@ -38,7 +34,7 @@ UpdateMonthCommand::UpdateMonthCommand()
 //
 // Returned:    
 //***************************************************************************
-void UpdateMonthCommand::execute(Bank& rcTheBank)
+void UpdateMonthCommand::execute()
 {
-  rcTheBank.updateMonth();
+  mReceiver->updateMonth();
 }

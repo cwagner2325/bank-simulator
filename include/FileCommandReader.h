@@ -9,14 +9,14 @@
 
 #pragma once
 
-#include <iostream>
-#include <fstream>
-#include <string>
 #include <memory>
 #include <vector>
+#include <iostream>
+#include <fstream>
 
 #include "ICommandReader.h"
 #include "ICommand.h"
+#include "IReceiver.h"
 
 class FileCommandReader : public ICommandReader 
 {
@@ -24,8 +24,8 @@ class FileCommandReader : public ICommandReader
     FileCommandReader(std::string);
     virtual ~FileCommandReader();
 
-    virtual std::shared_ptr<ICommand> readCommand();
-    virtual void readAll(std::vector<std::shared_ptr<ICommand>>&);
+    virtual std::shared_ptr<ICommand> readCommand(std::shared_ptr<IReceiver>);
+    virtual void readAll(std::shared_ptr<IReceiver>, std::vector<std::shared_ptr<ICommand>>&);
 
   private: 
     std::ifstream mcInFile;

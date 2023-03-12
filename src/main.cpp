@@ -19,6 +19,7 @@
 #include "FileAccountReader.h"
 #include "ICommandReader.h"
 #include "FileCommandReader.h"
+#include "ICommand.h"
 
 //***************************************************************************
 // Function:    main
@@ -34,9 +35,16 @@ int main()
   const std::string ACCOUNTS_FILE = "data/Accounts.txt";
   const std::string COMMANDS_FILE = "data/Commands.txt";
 
+  std::vector <std::shared_ptr <ICommand>> mapcCommands; 
+
   std::shared_ptr<IAccountReader> pcAccountReader(new FileAccountReader(ACCOUNTS_FILE));
   std::shared_ptr<ICommandReader> pcCommandReader(new FileCommandReader(COMMANDS_FILE));
+
   std::shared_ptr<Bank> pcTheBank(new Bank(pcAccountReader));
+
+  pcCommandReader->readAll(pcTheBank, mapcCommands);
+
+  pcTheBank->executeCommands(mapcCommands);
   
 
   // pcTheBank->printAll();

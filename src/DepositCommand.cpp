@@ -24,8 +24,10 @@
 //
 // Returned:    
 //***************************************************************************
-DepositCommand::DepositCommand(int accountNumber, long long depositAmount)
+DepositCommand::DepositCommand(std::shared_ptr<IReceiver> pReceiver, 
+                               int accountNumber, long long depositAmount)
 {
+  mReceiver = pReceiver;
   mAccountNumber = accountNumber;
   mDepositAmount = depositAmount;
 }
@@ -39,12 +41,7 @@ DepositCommand::DepositCommand(int accountNumber, long long depositAmount)
 //
 // Returned:    
 //***************************************************************************
-void DepositCommand::execute(Bank& rcTheBank)
+void DepositCommand::execute() 
 {
-  std::shared_ptr<IBankAccount> pcAccount = rcTheBank.findAccount(mAccountNumber);
-
-  if (nullptr != pcAccount)
-  {
-    pcAccount->deposit(mDepositAmount);
-  }
+  mReceiver->deposit(mAccountNumber, mDepositAmount);
 }
