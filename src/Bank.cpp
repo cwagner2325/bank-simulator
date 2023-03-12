@@ -35,13 +35,13 @@ Bank::Bank(std::shared_ptr<IAccountReader>& rcReader)
 Bank::~Bank() {}
 
 //***************************************************************************
-// Function:    
+// Function:    executeCommands
 //
-// Description: 
+// Description: executes a set of commands
 //
-// Parameters:  
+// Parameters:  acCommands - a reference to a vector containing commands
 //
-// Returned:    
+// Returned:    none
 //***************************************************************************
 void Bank::executeCommands(std::vector<std::shared_ptr<ICommand>>& acCommands)
 {
