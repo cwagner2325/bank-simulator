@@ -8,10 +8,7 @@
 //              design skills. Practice new C++ syntax and idioms.
 //***************************************************************************
 
-#include <iostream>
 #include <vector> 
-#include <string>
-#include <sstream>
 #include <memory>
 
 #include "Bank.h"
@@ -30,40 +27,26 @@
 //
 // Returned:    EXIT_SUCCESS
 //***************************************************************************
-int main()
+int main(int argc, char *argv[])
 {
-  const std::string ACCOUNTS_FILE = "data/Accounts.txt";
-  const std::string COMMANDS_FILE = "data/Commands.txt";
+  const int CORRECT_NUM_COMMANDS_ARGS = 3;
+
+  if (CORRECT_NUM_COMMANDS_ARGS != argc) 
+  {
+    std::cout << "ERROR: Incorrect Number of Command Line Args" << std::endl << std::endl;
+    return EXIT_FAILURE;
+  }
 
   std::vector <std::shared_ptr <ICommand>> mapcCommands; 
 
-  std::shared_ptr<IAccountReader> pcAccountReader(new FileAccountReader(ACCOUNTS_FILE));
-  std::shared_ptr<ICommandReader> pcCommandReader(new FileCommandReader(COMMANDS_FILE));
+  std::shared_ptr<IAccountReader> pcAccountReader(new FileAccountReader(argv[1]));
+  std::shared_ptr<ICommandReader> pcCommandReader(new FileCommandReader(argv[2]));
 
   std::shared_ptr<Bank> pcTheBank(new Bank(pcAccountReader));
 
   pcCommandReader->readAll(pcTheBank, mapcCommands);
 
   pcTheBank->executeCommands(mapcCommands);
-  
-
-  // pcTheBank->printAll();
-  // pcTheBank->updateMonth();
-  // pcTheBank->printAll();
-  // pcTheBank->withdraw(1, 10);
-  // pcTheBank->withdraw(2, 10);
-  // pcTheBank->printAll();
-  // pcTheBank->deposit(1, 10);
-  // pcTheBank->deposit(2, 10);
-  // pcTheBank->printAll();
-  // pcTheBank->withdraw(2, 960);
-  // pcTheBank->printAll();
-  // pcTheBank->withdraw(1, 900);
-  // pcTheBank->printAll();
-  // pcTheBank->updateMonth();
-  // pcTheBank->printAll();
-  // pcTheBank->updateMonth();
-  // pcTheBank->printAll();
 
   return EXIT_SUCCESS;
 }

@@ -30,6 +30,12 @@
 FileCommandReader::FileCommandReader(std::string filename)
 {
   mcInFile.open(filename);
+
+  if (!mcInFile.is_open()) 
+  {
+    std::cout << "ERROR: Invalid Command File Provided" << std::endl << std::endl;
+    exit(EXIT_FAILURE);
+  }
 }
 
 //***************************************************************************

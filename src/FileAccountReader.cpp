@@ -26,6 +26,12 @@
 FileAccountReader::FileAccountReader(std::string filename)
 {
   mcFile.open(filename);
+
+  if (!mcFile.is_open()) 
+  {
+    std::cout << "ERROR: Invalid Account File Provided" << std::endl << std::endl;
+    exit(EXIT_FAILURE);
+  }
 }
 
 //***************************************************************************
