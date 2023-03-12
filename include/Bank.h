@@ -28,11 +28,12 @@ class Bank : public IReceiver
 
     virtual void executeCommands(std::vector<std::shared_ptr<ICommand>>&);
 
-    std::shared_ptr<IBankAccount> findAccount(int);
-
     virtual void printAll();
     virtual void updateMonth();
 
     virtual void deposit(int, long long);
     virtual void withdraw(int, long long);
+
+  protected:
+    std::shared_ptr<IBankAccount> findAccount(int);
 };
