@@ -12,13 +12,11 @@
 #include "UpdateMonthCommand.h"
 
 //***************************************************************************
-// Function:    
+// Constructor:    UpdateMonthCommand
 //
-// Description: 
+// Description:    Initalizes the receiver 
 //
-// Parameters:  
-//
-// Returned:    
+// Parameters:     pReceiver - a pointer to the receiver of the command
 //***************************************************************************
 UpdateMonthCommand::UpdateMonthCommand(std::shared_ptr<IReceiver> pReceiver)
 {
@@ -26,13 +24,13 @@ UpdateMonthCommand::UpdateMonthCommand(std::shared_ptr<IReceiver> pReceiver)
 }
 
 //***************************************************************************
-// Function:    
+// Function:      execute
 //
-// Description: 
+// Description:   execute the update on the receiever using me=mber data
 //
-// Parameters:  
+// Parameters:    none
 //
-// Returned:    
+// Returned:      none
 //***************************************************************************
 void UpdateMonthCommand::execute()
 {

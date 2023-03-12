@@ -66,24 +66,24 @@ std::shared_ptr<IBankAccount> FileAccountReader::readAccount()
 
   char accountIdentity = '.';
 
+  std::shared_ptr<IBankAccount> pcAccount = nullptr;
+  
   mcFile >> accountIdentity;
 
   if (SAVINGS_ACCOUNT == accountIdentity)
   {
     mcFile >> accountNumber >> initBalance >> interestRate >> fee >> minBalance;
-    std::shared_ptr<IBankAccount> pcAccount(
-     new SavingsAccount(accountNumber, initBalance, interestRate, fee, minBalance));
-    return pcAccount;
+    pcAccount = std::make_shared <SavingsAccount> 
+                  (accountNumber, initBalance, interestRate, fee, minBalance);
   }
   else if (CHECKINGS_ACCOUNT == accountIdentity)
   {
     mcFile >> accountNumber >> initBalance >> interestRate >> minBalance >> fee;
-    std::shared_ptr<IBankAccount> pcAccount(
-      new CheckingAccount(accountNumber, initBalance, interestRate, minBalance, fee));
-    return pcAccount;
+    pcAccount = std::make_shared <CheckingAccount>
+                  (accountNumber, initBalance, interestRate, minBalance, fee);
   }
 
-  return nullptr;
+  return pcAccount;
 }
 
 //***************************************************************************
@@ -96,7 +96,8 @@ std::shared_ptr<IBankAccount> FileAccountReader::readAccount()
 //
 // Returned:    none
 //***************************************************************************
-void FileAccountReader::readAll(std::vector<std::shared_ptr<IBankAccount>>& rcAccounts)
+void FileAccountReader::readAll(
+                        std::vector<std::shared_ptr<IBankAccount>>& rcAccounts)
 {
   std::shared_ptr<IBankAccount> pcAccount;
 

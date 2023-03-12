@@ -16,13 +16,14 @@
 #include "DepositCommand.h"
 
 //***************************************************************************
-// Function:    
+// Constructor:    DepositCommand
 //
-// Description: 
+// Description:    Initializes member variables 
 //
-// Parameters:  
-//
-// Returned:    
+// Parameters:     pReceiver     - a pointer to the receiver of the command
+//                 accountNumber - the account number of the account that 
+//                                 withdraw is executed on
+//                 depositAmount - the amount that is deposited
 //***************************************************************************
 DepositCommand::DepositCommand(std::shared_ptr<IReceiver> pReceiver, 
                                int accountNumber, long long depositAmount)
@@ -33,13 +34,13 @@ DepositCommand::DepositCommand(std::shared_ptr<IReceiver> pReceiver,
 }
 
 //***************************************************************************
-// Function:    
+// Function:      execute
 //
-// Description: 
+// Description:   execute the withdraw on the receiever using me=mber data
 //
-// Parameters:  
+// Parameters:    none
 //
-// Returned:    
+// Returned:      none
 //***************************************************************************
 void DepositCommand::execute() 
 {

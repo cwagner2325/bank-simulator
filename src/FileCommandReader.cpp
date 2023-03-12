@@ -49,15 +49,16 @@ FileCommandReader::~FileCommandReader()
 }
 
 //***************************************************************************
-// Function:    
+// Function:    readCommand
 //
-// Description: 
+// Description: reads a single command from the input file
 //
-// Parameters:  
+// Parameters:  pReceiver - the receiver of the command that is created
 //
-// Returned:    
+// Returned:    a shared pointer to the created command
 //***************************************************************************
-std::shared_ptr<ICommand> FileCommandReader::readCommand(std::shared_ptr<IReceiver> pReceiver)
+std::shared_ptr<ICommand> FileCommandReader::readCommand(
+                          std::shared_ptr<IReceiver> pReceiver)
 {
   const char PRINT_ALL = 'P';
   const char UPDATE_MONTH = 'M';
@@ -95,16 +96,17 @@ std::shared_ptr<ICommand> FileCommandReader::readCommand(std::shared_ptr<IReceiv
 }
 
 //***************************************************************************
-// Function:    
+// Function:    readAll
 //
-// Description: 
+// Description: reads the entire input file in and stores the results into 
+//              a vector
 //
-// Parameters:  
+// Parameters:  rcCommands - a reference to a vector that stores the comamnds
 //
-// Returned:    
+// Returned:    none
 //***************************************************************************
 void FileCommandReader::readAll(std::shared_ptr<IReceiver> pReceiver,
-                                std::vector<std::shared_ptr<ICommand>>& rcCommands)
+                            std::vector<std::shared_ptr<ICommand>>& rcCommands)
 {
   std::shared_ptr<ICommand> pcCommand;
 

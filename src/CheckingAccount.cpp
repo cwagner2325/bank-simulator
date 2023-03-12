@@ -24,7 +24,9 @@
 //                                  a fee incurs
 //                  minBalanceFee - The fee charged if the minimum is reached
 //***************************************************************************
-CheckingAccount::CheckingAccount(int accNumber, long long balance, double intRate, long long minBalance, long long minBalanceFee) : IBankAccount(accNumber, balance, intRate)
+CheckingAccount::CheckingAccount(int accNumber, long long balance, double intRate,
+                                 long long minBalance, long long minBalanceFee)
+                                  : IBankAccount(accNumber, balance, intRate)
 {
   mMinBalance = minBalance;
   mMinBalanceFee = minBalanceFee;

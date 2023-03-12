@@ -30,6 +30,8 @@
 int main(int argc, char *argv[])
 {
   const int CORRECT_NUM_COMMANDS_ARGS = 3;
+  const int ACCOUNT_FILE_INDEX = 1;
+  const int COMMAND_FILE_INDEX = 2;
 
   if (CORRECT_NUM_COMMANDS_ARGS != argc) 
   {
@@ -39,8 +41,11 @@ int main(int argc, char *argv[])
 
   std::vector <std::shared_ptr <ICommand>> mapcCommands; 
 
-  std::shared_ptr<IAccountReader> pcAccountReader(new FileAccountReader(argv[1]));
-  std::shared_ptr<ICommandReader> pcCommandReader(new FileCommandReader(argv[2]));
+  std::shared_ptr<IAccountReader> pcAccountReader
+                          (new FileAccountReader(argv[ACCOUNT_FILE_INDEX]));
+                          
+  std::shared_ptr<ICommandReader> pcCommandReader
+                          (new FileCommandReader(argv[COMMAND_FILE_INDEX]));
 
   std::shared_ptr<Bank> pcTheBank(new Bank(pcAccountReader));
 

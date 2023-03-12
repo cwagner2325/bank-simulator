@@ -18,7 +18,7 @@
 //***************************************************************************
 // Constructor:    IBankAccount
 //
-// Description:    Initalizes a IBankAccount object by stting member variables
+// Description:    Initalizes a IBankAccount object by setting member variables
 //
 // Parameters:     accountNumber - the account number for the new bank account
 //                 balance       - the inital balance for the new account

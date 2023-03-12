@@ -12,13 +12,14 @@
 #include "WithdrawCommand.h"
 
 //***************************************************************************
-// Function:    
+// Constructor:    WithdrawCommand
 //
-// Description: 
+// Description:    Initializes member variables 
 //
-// Parameters:  
-//
-// Returned:    
+// Parameters:     pReceiver      - a pointer to the receiver of the command
+//                 accountNumber  - the account number of the account that 
+//                                  withdraw is executed on
+//                 withdrawAmount - the amount that is withdrawed
 //***************************************************************************
 WithdrawCommand::WithdrawCommand(std::shared_ptr<IReceiver> pReceiver, 
                                  int accountNumber, long long withdrawAmount)
@@ -29,13 +30,13 @@ WithdrawCommand::WithdrawCommand(std::shared_ptr<IReceiver> pReceiver,
 }
 
 //***************************************************************************
-// Function:    
+// Function:      execute
 //
-// Description: 
+// Description:   execute the withdraw on the receiever using me=mber data
 //
-// Parameters:  
+// Parameters:    none
 //
-// Returned:    
+// Returned:      none
 //***************************************************************************
 void WithdrawCommand::execute()
 {

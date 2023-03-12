@@ -12,13 +12,11 @@
 #include "PrintAllCommand.h"
 
 //***************************************************************************
-// Function:    
+// Constructor:    WithdrawCommand
 //
-// Description: 
+// Description:    Initializes the receiver  
 //
-// Parameters:  
-//
-// Returned:    
+// Parameters:     pReceiver - a pointer to the receiver of the command
 //***************************************************************************
 PrintAllCommand::PrintAllCommand(std::shared_ptr<IReceiver> pReceiver)
 {
@@ -26,13 +24,13 @@ PrintAllCommand::PrintAllCommand(std::shared_ptr<IReceiver> pReceiver)
 }
 
 //***************************************************************************
-// Function:    
+// Function:      execute
 //
-// Description: 
+// Description:   execute the print all on the receiever using me=mber data
 //
-// Parameters:  
+// Parameters:    none
 //
-// Returned:    
+// Returned:      none
 //***************************************************************************
 void PrintAllCommand::execute()
 {
