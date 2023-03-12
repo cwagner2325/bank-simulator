@@ -12,6 +12,15 @@ all: bin bin/main
 ENSCRIPT_FLAGS=-C -T 2 -p - -M Letter -Ecpp --color -fCourier8
 VALGRIND_FLAGS=-v --leak-check=yes --track-origins=yes --leak-check=full --show-leak-kinds=all 
 
+BANK_FILES= include/IReceiver.h include/Bank.h src/Bank.cpp
+READER_FILES= include/IAccountReader.h include/FileAccountReader.h src/FileAccountReader.cpp \
+							include/ICommandReader.h include/FileCommandReader.h src/FileCommandReader.cpp
+ACCOUNT_FILES= include/IBankAccount.h src/IBankAccount.cpp include/SavingsAccount.h \
+							 src/SavingsAccount.cpp include/CheckingAccount.h src/CheckingAccount.cpp 
+COMMAND_FILES= include/ICommand.h include/DepositCommand.h src/DepositCommand.cpp \
+							 include/WithdrawCommand.h src/WithdrawCommand.cpp include/UpdateMonthCommand.h \
+							 src/UpdateMonthCommand.cpp include/PrintAllCommand.h src/PrintAllCommand.cpp
+
 #compiler=clang++
 compiler=g++
 
@@ -40,7 +49,8 @@ valgrind: bin/main
 	valgrind ${VALGRIND_FLAGS} bin/main data/Accounts.txt data/Commands.txt
 
 printAll:
-	enscript ${ENSCRIPT_FLAGS} src/*.cpp include/*.h  | ps2pdf - bin/src.pdf
+	enscript ${ENSCRIPT_FLAGS} src/main.cpp ${BANK_FILES} ${READER_FILES} ${ACCOUNT_FILES} \
+	${COMMAND_FILES} Makefile_linux | ps2pdf - bin/src.pdf
 
 runMe: bin/main
 	bin/main
