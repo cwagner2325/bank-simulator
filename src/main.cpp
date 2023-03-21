@@ -19,6 +19,7 @@
 #include "ICommand.h"
 #include "IAccountContainer.h"
 #include "AccountMap.h"
+#include "Money.h"
 
 //***************************************************************************
 // Function:    main
@@ -56,6 +57,8 @@ int main(int argc, char *argv[])
   pcCommandReader->readAll(pcTheBank, mapcCommands);
 
   pcTheBank->executeCommands(mapcCommands);
+
+
 
   return EXIT_SUCCESS;
 }
