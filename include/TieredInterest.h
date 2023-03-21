@@ -23,6 +23,8 @@ class TieredInterest : public IInterest
 
     virtual Money calculateInterest(const Money&);
     virtual std::istream& read(std::istream&);
+
+    virtual std::ostream& print(std::ostream&) const; 
   
   private:
     std::vector<std::pair<Money, double>> macTiers; 

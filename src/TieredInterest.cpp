@@ -9,6 +9,7 @@
 
 #include "memory"
 #include "vector"
+#include "iostream"
 
 #include "TieredInterest.h"
 #include "Money.h"
@@ -68,4 +69,33 @@ std::istream& TieredInterest::read(std::istream& rcIn)
   }
 
   return rcIn;
+}
+
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    none
+//***************************************************************************
+std::ostream& TieredInterest::print(std::ostream& rcOut) const
+{
+  const char TIERED_IDENT = 'T';
+  const int DECIMAL = 100;
+
+  rcOut << TIERED_IDENT << ' ';
+
+  for (int i = 0; i < static_cast<int> (macTiers.size()); i++) 
+  {
+    rcOut << macTiers.at(i).first << ' ';
+  }
+
+  for (int i = 0; i < static_cast<int> (macTiers.size()); i++) 
+  {
+    rcOut << macTiers.at(i).second * DECIMAL << "% ";
+  }
+
+  return rcOut;
 }

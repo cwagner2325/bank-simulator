@@ -12,13 +12,12 @@
 #include <iomanip>
 #include <memory>
 #include <math.h>
+
 #include "Money.h"
 #include "TieredInterest.h"
 #include "FlatInterest.h"
 #include "IInterest.h"
-
 #include "IBankAccount.h"
-
 
 //***************************************************************************
 // Constructor:    IBankAccount
@@ -76,7 +75,7 @@ void IBankAccount::withdraw(Money withdrawAmount)
 //***************************************************************************
 std::ostream& IBankAccount::print(std::ostream& rcOut) const
 {
-  rcOut << mAccountNumber << ", " << mBalance << ", ";
+  rcOut << mAccountNumber << ", " << mBalance << ", " << mpcInterest;
 
   return rcOut;
 }

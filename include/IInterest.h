@@ -24,4 +24,7 @@ class IInterest
 
     virtual std::istream& read(std::istream&) = 0;
     friend std::istream& operator>>(std::istream&, std::shared_ptr<IInterest>);
+
+    virtual std::ostream& print(std::ostream&) const = 0; 
+    friend std::ostream& operator<<(std::ostream&, std::shared_ptr<IInterest>);
 };

@@ -47,3 +47,22 @@ std::istream& FlatInterest::read(std::istream& rcIn)
 
   return rcIn;
 }
+
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    none
+//***************************************************************************
+std::ostream& FlatInterest::print(std::ostream& rcOut) const
+{
+  const char FLAT_IDENT = 'F';
+  const int DECIMAL = 100;
+
+  rcOut << FLAT_IDENT << ' ' << mInterestRate * DECIMAL << '%'; 
+
+  return rcOut;
+}

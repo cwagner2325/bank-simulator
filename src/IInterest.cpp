@@ -28,3 +28,19 @@ std::istream& operator>>(std::istream& rcIn, std::shared_ptr<IInterest> rcInt)
   
   return rcIn;
 }
+
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    none
+//***************************************************************************
+std::ostream& operator<<(std::ostream& rcOut, std::shared_ptr<IInterest> rcInt)
+{
+  rcInt->print(rcOut);
+  
+  return rcOut;
+}
