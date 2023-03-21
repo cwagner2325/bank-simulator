@@ -13,13 +13,11 @@
 #include "IBankAccount.h"
 
 //***************************************************************************
-// Function:    
+// Constructor:    AccountMap
 //
-// Description: 
+// Description:    sets the iterator to the first element in the map
 //
-// Parameters:  
-//
-// Returned:    
+// Parameters:     none
 //***************************************************************************
 AccountMap::AccountMap()
 {
@@ -27,24 +25,22 @@ AccountMap::AccountMap()
 }
 
 //***************************************************************************
-// Function:    
+// Destructor:    AccountMap
 //
-// Description: 
+// Description:   destructor for AccountMap
 //
-// Parameters:  
-//
-// Returned:    
+// Parameters:    none
 //***************************************************************************
 AccountMap::~AccountMap() {}
 
 //***************************************************************************
-// Function:    
+// Function:    find
 //
-// Description: 
+// Description: finds the element in the map by key
 //
-// Parameters:  
+// Parameters:  key - the key that is found
 //
-// Returned:    
+// Returned:    a shared pointer to the account object is found, else nullptr
 //***************************************************************************
 std::shared_ptr<IBankAccount> AccountMap::find(int key)
 {
@@ -57,13 +53,13 @@ std::shared_ptr<IBankAccount> AccountMap::find(int key)
 }
 
 //***************************************************************************
-// Function:    
+// Function:    insert
 //
-// Description: 
+// Description: inserts a new key value pair into the map
 //
-// Parameters:  
+// Parameters:  pcAccount - a pointer to the account that is added
 //
-// Returned:    
+// Returned:    none
 //***************************************************************************
 void AccountMap::insert(std::shared_ptr<IBankAccount> pcAccount)
 {
@@ -71,13 +67,13 @@ void AccountMap::insert(std::shared_ptr<IBankAccount> pcAccount)
 }
 
 //***************************************************************************
-// Function:    
+// Function:    getNext
 //
-// Description: 
+// Description: gets the next element in the map
 //
-// Parameters:  
+// Parameters:  none
 //
-// Returned:    
+// Returned:    a pointer to the next account if it exists, else nullptr
 //***************************************************************************
 std::shared_ptr<IBankAccount> AccountMap::getNext()
 {
