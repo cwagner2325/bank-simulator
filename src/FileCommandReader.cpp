@@ -19,6 +19,7 @@
 #include "DepositCommand.h"
 #include "WithdrawCommand.h"
 #include "IReceiver.h"
+#include "Money.h"
 
 //***************************************************************************
 // Constructor:    FileCommandReader
@@ -67,7 +68,7 @@ std::shared_ptr<ICommand> FileCommandReader::readCommand(
 
   char commandIdentity = '.';
   int accountNumber = 0;
-  long long amount = 0;
+  Money amount;
 
   std::shared_ptr<ICommand> pcCommand = nullptr;
 

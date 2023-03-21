@@ -14,11 +14,12 @@
 #include "ICommand.h"
 #include "Bank.h"
 #include "IReceiver.h"
+#include "Money.h"
 
 class DepositCommand : public ICommand
 {
   public:
-    DepositCommand(std::shared_ptr<IReceiver>, int, long long);
+    DepositCommand(std::shared_ptr<IReceiver>, int, Money);
     virtual ~DepositCommand() {};
 
     virtual void execute();
@@ -27,7 +28,7 @@ class DepositCommand : public ICommand
 
     int mAccountNumber;
 
-    long long mDepositAmount;
+    Money mDepositAmount;
 
     std::shared_ptr<IReceiver> mReceiver;
 

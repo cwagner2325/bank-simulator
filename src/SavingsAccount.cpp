@@ -9,6 +9,7 @@
 
 #include "IBankAccount.h"
 #include "SavingsAccount.h"
+#include "Money.h"
 
 //***************************************************************************
 // Constructor:     SavingsAccount
@@ -36,7 +37,7 @@ SavingsAccount::~SavingsAccount() {};
 //
 // Returned:    none
 //***************************************************************************
-void SavingsAccount::withdraw(long long withdrawAmount)
+void SavingsAccount::withdraw(Money withdrawAmount)
 {
   IBankAccount::withdraw(withdrawAmount);
 

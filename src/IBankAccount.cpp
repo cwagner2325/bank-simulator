@@ -12,6 +12,7 @@
 #include <iomanip>
 #include <memory>
 #include <math.h>
+#include "Money.h"
 
 #include "IBankAccount.h"
 
@@ -43,9 +44,9 @@ IBankAccount::~IBankAccount() {};
 //
 // Returned:      none
 //***************************************************************************
-void IBankAccount::deposit(long long depositAmount)
+void IBankAccount::deposit(Money depositAmount)
 {
-  mBalance += std::trunc(depositAmount);
+  mBalance += depositAmount;
 }
 
 //***************************************************************************
@@ -57,9 +58,9 @@ void IBankAccount::deposit(long long depositAmount)
 //
 // Returned:      none
 //***************************************************************************
-void IBankAccount::withdraw(long long withdrawAmount)
+void IBankAccount::withdraw(Money withdrawAmount)
 {
-  mBalance -= std::trunc(withdrawAmount);
+  mBalance -= withdrawAmount;
 }
 //***************************************************************************
 // Function:    primt
@@ -74,8 +75,8 @@ std::ostream& IBankAccount::print(std::ostream& rcOut) const
 {
   const double DECIMAL = 100;
 
-  rcOut << mAccountNumber << ", $" << std::fixed << std::setprecision(2) 
-        << mBalance / DECIMAL << ", " << (mInterestRate * DECIMAL) << "%";
+  rcOut << mAccountNumber << ", " << mBalance << ", "
+        << (mInterestRate * DECIMAL) << "%";
 
   return rcOut;
 }
@@ -118,9 +119,9 @@ std::ostream& operator<<(std::ostream& rcOut, const IBankAccount& rcAccount)
 //
 // Returned:    true if the account balance is below the argument, else false
 //***************************************************************************
-bool IBankAccount::isBelow(long long amount)
+bool IBankAccount::isBelow(Money amount)
 {
-  return mBalance < amount;
+  return amount >= mBalance;
 }
 
 //***************************************************************************
@@ -136,7 +137,7 @@ void IBankAccount::addInterest()
 {
   if (!isBelow(0))
   {
-    mBalance += std::trunc(mBalance * mInterestRate);
+    mBalance *= mInterestRate;
   }
 }
 

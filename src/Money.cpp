@@ -93,7 +93,9 @@ Money Money::operator-(const Money& rcMoney)
 //***************************************************************************
 Money Money::operator=(const Money& rcMoney)
 {
-  return Money(rcMoney);
+  mAmount = rcMoney.getInUSD();
+
+  return *this;
 }
 
 //***************************************************************************
@@ -108,6 +110,34 @@ Money Money::operator=(const Money& rcMoney)
 bool Money::operator>(const Money& rcMoney)
 {
   return getInUSD() > rcMoney.getInUSD();
+}
+
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
+void Money::operator+=(const Money& rcMoney)
+{
+  mAmount = mAmount + rcMoney.getInUSD();
+}
+
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
+void Money::operator-=(const Money& rcMoney)
+{
+  mAmount = mAmount - rcMoney.getInUSD();
 }
 
 //***************************************************************************
@@ -136,6 +166,20 @@ bool Money::operator>=(const Money& rcMoney)
 Money Money::operator*(double interestRate)
 {
   return Money(mAmount *= interestRate);
+}
+
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
+void Money::operator*=(double interestRate)
+{
+  mAmount = mAmount + (mAmount * interestRate);
 }
 
 //***************************************************************************
@@ -199,6 +243,7 @@ std::ostream& Money::print(std::ostream& rcOut) const
 std::istream& Money::read(std::istream& rcIn)
 {
   rcIn >> mAmount;
+
   return rcIn;
 }
 

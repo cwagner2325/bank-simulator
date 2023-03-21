@@ -12,13 +12,14 @@
 #include <string>
 
 #include "IBankAccount.h"
+#include "Money.h"
 
 class SavingsAccount : public IBankAccount
 {
   private:
-    long long mMonthlyFee;
+    Money mMonthlyFee;
 
-    long long mMinMonthlyBalance;
+    Money mMinMonthlyBalance;
 
     bool mbMonthlyFeeReached;
       
@@ -27,7 +28,7 @@ class SavingsAccount : public IBankAccount
     SavingsAccount();
     virtual ~SavingsAccount();
 
-    virtual void withdraw(long long);
+    virtual void withdraw(Money);
 
     virtual void updateMonth();
 

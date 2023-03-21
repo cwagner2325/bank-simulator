@@ -12,6 +12,7 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include "Money.h"
 
 #include "DepositCommand.h"
 
@@ -26,7 +27,7 @@
 //                 depositAmount - the amount that is deposited
 //***************************************************************************
 DepositCommand::DepositCommand(std::shared_ptr<IReceiver> pReceiver, 
-                               int accountNumber, long long depositAmount)
+                               int accountNumber, Money depositAmount)
 {
   mReceiver = pReceiver;
   mAccountNumber = accountNumber;

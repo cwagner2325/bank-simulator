@@ -125,7 +125,7 @@ void Bank::updateMonth()
 //
 // Returned:    none
 //***************************************************************************
-void Bank::deposit(int accountNumber, long long depositAmount)
+void Bank::deposit(int accountNumber, Money depositAmount)
 {
   std::shared_ptr<IBankAccount> pcAccount = mapcAccounts->find(accountNumber);
 
@@ -146,7 +146,7 @@ void Bank::deposit(int accountNumber, long long depositAmount)
 //
 // Returned:    none
 //***************************************************************************
-void Bank::withdraw(int accountNumber, long long withdrawAmount)
+void Bank::withdraw(int accountNumber, Money withdrawAmount)
 {
   std::shared_ptr<IBankAccount> pcAccount = mapcAccounts->find(accountNumber);
 

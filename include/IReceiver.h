@@ -11,6 +11,7 @@
 
 #include <memory>
 #include <vector>
+#include "Money.h"
 
 class IReceiver
 {
@@ -20,7 +21,7 @@ class IReceiver
     virtual void printAll() = 0;
     virtual void updateMonth() = 0;
 
-    virtual void deposit(int, long long) = 0;
-    virtual void withdraw(int, long long) = 0;
+    virtual void deposit(int, Money) = 0;
+    virtual void withdraw(int, Money) = 0;
 };
 

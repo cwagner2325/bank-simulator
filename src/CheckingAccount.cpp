@@ -37,7 +37,7 @@ CheckingAccount::~CheckingAccount() {}
 //
 // Returned:    none
 //***************************************************************************
-void CheckingAccount::deposit(long long depositAmount)
+void CheckingAccount::deposit(Money depositAmount)
 {
   IBankAccount::deposit(depositAmount);
 
@@ -57,7 +57,7 @@ void CheckingAccount::deposit(long long depositAmount)
 //
 // Returned:    none
 //***************************************************************************
-void CheckingAccount::withdraw(long long withdrawAmount)
+void CheckingAccount::withdraw(Money withdrawAmount)
 {
   IBankAccount::withdraw(withdrawAmount);
 

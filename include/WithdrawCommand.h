@@ -13,11 +13,12 @@
 
 #include "ICommand.h"
 #include "IReceiver.h"
+#include "Money.h"
 
 class WithdrawCommand : public ICommand
 {
   public:
-    WithdrawCommand(std::shared_ptr<IReceiver>, int, long long);
+    WithdrawCommand(std::shared_ptr<IReceiver>, int, Money);
     virtual ~WithdrawCommand() {};
 
     virtual void execute();
@@ -26,7 +27,7 @@ class WithdrawCommand : public ICommand
 
     int mAccountNumber;
 
-    long long mWithdrawAmount;
+    Money mWithdrawAmount;
 
     std::shared_ptr<IReceiver> mReceiver;
 

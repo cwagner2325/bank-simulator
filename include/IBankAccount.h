@@ -11,6 +11,7 @@
 #include <iostream>
 #include <string>
 #include <memory>
+#include "Money.h"
 
 class IBankAccount 
 {
@@ -20,11 +21,11 @@ class IBankAccount
 
     double mInterestRate;
 
-    long long mBalance;
+    Money mBalance;
 
   protected: 
 
-    bool isBelow(long long);
+    bool isBelow(Money);
 
     void addInterest();
  
@@ -33,8 +34,8 @@ class IBankAccount
     IBankAccount();
     virtual ~IBankAccount();
 
-    virtual void deposit(long long);
-    virtual void withdraw(long long);
+    virtual void deposit(Money);
+    virtual void withdraw(Money);
 
     virtual void updateMonth() = 0;
 

@@ -17,6 +17,7 @@
 #include "IReceiver.h"
 #include "ICommand.h"
 #include "IAccountContainer.h"
+#include "Money.h"
 
 class Bank : public IReceiver
 {
@@ -32,6 +33,6 @@ class Bank : public IReceiver
     virtual void printAll();
     virtual void updateMonth();
 
-    virtual void deposit(int, long long);
-    virtual void withdraw(int, long long);
+    virtual void deposit(int, Money);
+    virtual void withdraw(int, Money);
 };

@@ -10,6 +10,7 @@
 #include <memory>
 
 #include "WithdrawCommand.h"
+#include "Money.h"
 
 //***************************************************************************
 // Constructor:    WithdrawCommand
@@ -22,7 +23,7 @@
 //                 withdrawAmount - the amount that is withdrawed
 //***************************************************************************
 WithdrawCommand::WithdrawCommand(std::shared_ptr<IReceiver> pReceiver, 
-                                 int accountNumber, long long withdrawAmount)
+                                 int accountNumber, Money withdrawAmount)
 {
   mReceiver = pReceiver;
   mAccountNumber = accountNumber;

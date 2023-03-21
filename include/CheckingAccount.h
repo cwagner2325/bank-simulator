@@ -11,21 +11,22 @@
 #include <iostream>
 #include <string>
 #include "IBankAccount.h"
+#include "Money.h"
 
 class CheckingAccount : public IBankAccount 
 {
   private:
 
-    long long mMinBalance;
-    long long mMinBalanceFee;
+    Money mMinBalance;
+    Money mMinBalanceFee;
       
   public:
 
     CheckingAccount();
     virtual ~CheckingAccount();
 
-    virtual void deposit(long long);
-    virtual void withdraw(long long);
+    virtual void deposit(Money);
+    virtual void withdraw(Money);
 
     virtual void updateMonth();
 

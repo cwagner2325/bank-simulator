@@ -26,6 +26,9 @@ class Money
     Money operator+(const Money&);
     Money operator-(const Money&);
     Money operator=(const Money&);
+    void operator+=(const Money&);
+    void operator-=(const Money&);
+    void operator*=(double);
     bool operator>(const Money&);
     bool operator>=(const Money&);
 
