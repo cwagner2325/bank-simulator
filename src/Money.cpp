@@ -109,8 +109,10 @@ std::ostream& Money::print(std::ostream& rcOut) const
 {
   const char MONEY_PREFIX = '$';
   const int NUM_DECIMALS = 2;
-  const int DECIMAL = 100;
+  const double DECIMAL = 100;
 
   rcOut << MONEY_PREFIX << std::fixed << std::setprecision(NUM_DECIMALS)
         << mAmount / DECIMAL;
+
+  return rcOut;
 }

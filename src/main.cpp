@@ -58,7 +58,5 @@ int main(int argc, char *argv[])
 
   pcTheBank->executeCommands(mapcCommands);
 
-
-
   return EXIT_SUCCESS;
 }
