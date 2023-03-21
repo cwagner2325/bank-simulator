@@ -12,17 +12,11 @@
 #include "CheckingAccount.h"
 
 //***************************************************************************
-// Constructor:    CheckingAccount
+// Constructor:     CheckingAccount
 //
-// Description:     Calls the super class constructor and then sets its own 
-//                  mebmber variables to initalize a checking account object
+// Description:     Constructor for a checking account
 //
-// Parameters:      accNumber     - The account number of the new account
-//                  balance       - The initial balance of the new account
-//                  intRate       - The interest rate of the new account
-//                  minBalance    - The minimum balance of the account before 
-//                                  a fee incurs
-//                  minBalanceFee - The fee charged if the minimum is reached
+// Parameters:      None
 //***************************************************************************
 CheckingAccount::CheckingAccount() {};
 
@@ -105,13 +99,13 @@ std::ostream& CheckingAccount::print(std::ostream& rcOut) const
 }
 
 //***************************************************************************
-// Function:    
+// Function:    read
 //
-// Description: 
+// Description: reads in a checkings account object from a stream
 //
-// Parameters:  
+// Parameters:  rcIn - the stream that is read from
 //
-// Returned:    
+// Returned:    a reference to the stream
 //***************************************************************************
 std::istream& CheckingAccount::read(std::istream& rcIn)
 {

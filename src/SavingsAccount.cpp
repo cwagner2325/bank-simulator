@@ -13,15 +13,9 @@
 //***************************************************************************
 // Constructor:    SavingsAccount
 //
-// Description:     Calls the super class constructor and then sets its own 
-//                  mebmber variables to initalize a savings account object
+// Description:     Constructor for Savings Account
 //
-// Parameters:      accNumber  - The account number of the new account
-//                  balance    - The initial balance of the new account
-//                  intRate    - The interest rate of the new account
-//                  monthlyFee - The fee charged if the minimum is reached
-//                  minMonthly - The minimum balance of the account before 
-//                                  a fee incurs for the month
+// Parameters:      None
 //***************************************************************************
 SavingsAccount::SavingsAccount() {};
 
@@ -93,13 +87,13 @@ std::ostream& SavingsAccount::print(std::ostream& rcOut) const
 }
 
 //***************************************************************************
-// Function:    
+// Function:    read
 //
-// Description: 
+// Description: reads in a savings account object from a stream
 //
-// Parameters:  
+// Parameters:  rcIn - the stream that is read from
 //
-// Returned:    
+// Returned:    a reference to the stream
 //***************************************************************************
 std::istream& SavingsAccount::read(std::istream& rcIn)
 {

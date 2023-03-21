@@ -141,13 +141,13 @@ void IBankAccount::addInterest()
 }
 
 //***************************************************************************
-// Function:    
+// Function:    read
 //
-// Description: 
+// Description: reads in a bank account object from a stream
 //
-// Parameters:  
+// Parameters:  rcIn - the stream that is read from
 //
-// Returned:    
+// Returned:    a reference to the stream
 //***************************************************************************
 std::istream& IBankAccount::read(std::istream& rcIn)
 {
@@ -156,13 +156,14 @@ std::istream& IBankAccount::read(std::istream& rcIn)
 }
 
 //***************************************************************************
-// Function:    
+// Operator:    >>
 //
-// Description: 
+// Description: invokes read polymorphically to read in a bank account
 //
-// Parameters:  
+// Parameters:  rcIn   - the stream that us read from
+//              pcBank - a pointer to the bank that is read in
 //
-// Returned:    
+// Returned:    a reference to the stream object
 //***************************************************************************
 std::istream& operator>>(std::istream& rcIn, std::shared_ptr<IBankAccount> pcBank)
 {
