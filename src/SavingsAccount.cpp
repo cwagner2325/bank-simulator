@@ -18,7 +18,10 @@
 //
 // Parameters:      None
 //***************************************************************************
-SavingsAccount::SavingsAccount() {};
+SavingsAccount::SavingsAccount() 
+{
+  mbMonthlyFeeReached = false;
+};
 
 //***************************************************************************
 // Destructor:    SavingsAccount
@@ -100,5 +103,8 @@ std::istream& SavingsAccount::read(std::istream& rcIn)
 {
   IBankAccount::read(rcIn);
   rcIn >> mMonthlyFee >> mMinMonthlyBalance;
+
+  mbMonthlyFeeReached = isBelow(mMinMonthlyBalance);
+
   return rcIn;
 }
