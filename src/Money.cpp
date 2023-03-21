@@ -65,7 +65,9 @@ Money::Money(const Money& rcMoney)
 //***************************************************************************
 Money Money::operator+(const Money& rcMoney)
 {
-  return Money(getInUSD() + rcMoney.getInUSD());
+  mAmount = mAmount + rcMoney.getInUSD();
+
+  return *this;
 }
 
 //***************************************************************************
@@ -79,7 +81,9 @@ Money Money::operator+(const Money& rcMoney)
 //***************************************************************************
 Money Money::operator-(const Money& rcMoney)
 {
-  return Money(getInUSD() - rcMoney.getInUSD());
+  mAmount = mAmount - rcMoney.getInUSD();
+
+  return *this;
 }
 
 //***************************************************************************
