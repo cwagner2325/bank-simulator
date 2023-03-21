@@ -14,13 +14,13 @@
 #include "Money.h"
 
 //***************************************************************************
-// Function:    
+// Function:    calculateInterest
 //
-// Description: 
+// Description: calculates interest on the Money object passed in
 //
-// Parameters:  
+// Parameters:  rcMoney - the money that interest is calculated on
 //
-// Returned:    none
+// Returned:    A money object representing how much interest is generated
 //***************************************************************************
 Money FlatInterest::calculateInterest(const Money& rcMoney)
 {
@@ -33,13 +33,13 @@ Money FlatInterest::calculateInterest(const Money& rcMoney)
 }
 
 //***************************************************************************
-// Function:    
+// Function:    read
 //
-// Description: 
+// Description: reads in a tiered interest object from a stream
 //
-// Parameters:  
+// Parameters:  rcIn - the stream from which an object is read
 //
-// Returned:    none
+// Returned:    a reference to the stream
 //***************************************************************************
 std::istream& FlatInterest::read(std::istream& rcIn)
 {
@@ -49,13 +49,13 @@ std::istream& FlatInterest::read(std::istream& rcIn)
 }
 
 //***************************************************************************
-// Function:    
+// Function:    print
 //
-// Description: 
+// Description: prints a tiered interest object to a stream
 //
-// Parameters:  
+// Parameters:  rcOut - the stream to which it is printed
 //
-// Returned:    none
+// Returned:    a reference to a stream
 //***************************************************************************
 std::ostream& FlatInterest::print(std::ostream& rcOut) const
 {

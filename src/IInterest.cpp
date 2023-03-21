@@ -14,13 +14,14 @@
 #include "Money.h"
 
 //***************************************************************************
-// Function:    
+// Operator:    >>
 //
-// Description: 
+// Description: read an interest object polymorphically by calling read
 //
-// Parameters:  
+// Parameters:  rcIn  - the stream from which interest is read
+//              rcInt - a pointer to the pbject that is read
 //
-// Returned:    none
+// Returned:    a reference to the stream
 //***************************************************************************
 std::istream& operator>>(std::istream& rcIn, std::shared_ptr<IInterest> rcInt)
 {
@@ -30,13 +31,14 @@ std::istream& operator>>(std::istream& rcIn, std::shared_ptr<IInterest> rcInt)
 }
 
 //***************************************************************************
-// Function:    
+// Operator:    <<
 //
-// Description: 
+// Description: print an interest object polymorphically by calling print
 //
-// Parameters:  
+// Parameters:  rcOut - the stream to which interest is printed
+//              rcInt - a pointer to the pbject that is printed
 //
-// Returned:    none
+// Returned:    a reference to the stream
 //***************************************************************************
 std::ostream& operator<<(std::ostream& rcOut, std::shared_ptr<IInterest> rcInt)
 {
