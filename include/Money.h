@@ -24,15 +24,21 @@ class Money
     virtual ~Money() {};
 
     Money operator+(const Money&);
-    long long getInUSD() const;
-    // Money operator-(const Money&);
-    // Money operator=(const Money&);
-    // Money operator>(const Money&);
-    // Money operator>=(const Money&);
-    friend std::ostream& operator<<(std::ostream&, const Money&);
+    Money operator-(const Money&);
+    Money operator=(const Money&);
+    bool operator>(const Money&);
+    bool operator>=(const Money&);
 
-    // Money operator+(double);
+    Money operator*(double);
 
     virtual std::ostream& print(std::ostream&) const;
+    friend std::ostream& operator<<(std::ostream&, const Money&);
+
+    virtual std::istream& read(std::istream&);
+    friend std::istream& operator>>(std::istream&, Money&);
+
+    long long getInUSD() const;
+
+    
 
 };

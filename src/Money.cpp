@@ -77,6 +77,76 @@ Money Money::operator+(const Money& rcMoney)
 //
 // Returned:    
 //***************************************************************************
+Money Money::operator-(const Money& rcMoney)
+{
+  return Money(getInUSD() - rcMoney.getInUSD());
+}
+
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
+Money Money::operator=(const Money& rcMoney)
+{
+  return Money(rcMoney);
+}
+
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
+bool Money::operator>(const Money& rcMoney)
+{
+  return getInUSD() > rcMoney.getInUSD();
+}
+
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
+bool Money::operator>=(const Money& rcMoney)
+{
+  return getInUSD() >= rcMoney.getInUSD();
+}
+
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
+Money Money::operator*(double interestRate)
+{
+  return Money(mAmount *= interestRate);
+}
+
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
 long long Money::getInUSD() const
 {
   return mAmount;
@@ -115,4 +185,34 @@ std::ostream& Money::print(std::ostream& rcOut) const
         << mAmount / DECIMAL;
 
   return rcOut;
+}
+
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
+std::istream& Money::read(std::istream& rcIn)
+{
+  rcIn >> mAmount;
+  return rcIn;
+}
+
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
+std::istream& operator>>(std::istream& rcIn, Money& rcMoney)
+{
+  rcMoney.read(rcIn);
+  return rcIn;
 }
