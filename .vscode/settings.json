@@ -76,7 +76,8 @@
     "stack": "cpp",
     "compare": "cpp",
     "concepts": "cpp",
-    "ranges": "cpp"
+    "ranges": "cpp",
+    "map": "cpp"
   },
    
   "terminal.integrated.profiles.windows": {

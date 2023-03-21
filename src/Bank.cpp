@@ -22,9 +22,17 @@
 //
 // Parameters:     rcReader - a reference to an account reader
 //***************************************************************************
-Bank::Bank(std::shared_ptr<IAccountReader>& rcReader)
+Bank::Bank(std::shared_ptr<IAccountReader> pcReader,
+           std::shared_ptr<IAccountContainer> pcContainer)
 {
-  rcReader->readAll(mapcAccounts);
+  std::shared_ptr<IBankAccount> pcAccount;
+
+  mapcAccounts = pcContainer;
+  
+  while (nullptr != (pcAccount = pcReader->readAccount()))
+  {
+    mapcAccounts->insert(pcAccount);
+  }
 }
 
 //***************************************************************************
@@ -50,26 +58,6 @@ void Bank::executeCommands(std::vector<std::shared_ptr<ICommand>>& acCommands)
     acCommands.at(i)->execute();
   }
 }
-//***************************************************************************
-// Function:    findAccount
-//
-// Description: finds an account in the account vector based on an account number
-//
-// Parameters:  key - the account number that is searched for
-//
-// Returned:    a shared pointer to the account if found, else nullptr
-//***************************************************************************
-std::shared_ptr<IBankAccount> Bank::findAccount(int key)
-{
-  for (int i = 0; i < static_cast<int> (mapcAccounts.size()); i++)
-  {
-    if (mapcAccounts.at(i)->equals(key))
-    {
-      return mapcAccounts.at(i);
-    }
-  }
-  return nullptr;
-}
 
 //***************************************************************************
 // Function:    printAll
@@ -85,6 +73,8 @@ void Bank::printAll()
   const int NUM_CHARS = 13;
   const char BORDER_CHAR = '-';
 
+  std::shared_ptr<IBankAccount> pcAccount;
+
   for (int i = 0; i < NUM_CHARS; i++) 
   {
     std::cout << BORDER_CHAR;
@@ -92,9 +82,9 @@ void Bank::printAll()
 
   std::cout << std::endl;
 
-  for (int i = 0; i < static_cast<int> (mapcAccounts.size()); i++)
+  while (nullptr != (pcAccount = mapcAccounts->getNext()))
   {
-   std::cout << *mapcAccounts.at(i) << std::endl;
+    std::cout << *pcAccount << std::endl;
   }
 
   for (int i = 0; i < NUM_CHARS; i++) 
@@ -116,9 +106,11 @@ void Bank::printAll()
 //***************************************************************************
 void Bank::updateMonth()
 {
-  for (int i = 0; i < static_cast<int> (mapcAccounts.size()); i++)
+  std::shared_ptr<IBankAccount> pcAccount;
+
+  while (nullptr != (pcAccount = mapcAccounts->getNext()))
   {
-    mapcAccounts.at(i)->updateMonth();
+    pcAccount->updateMonth();
   }
 }
 
@@ -135,7 +127,7 @@ void Bank::updateMonth()
 //***************************************************************************
 void Bank::deposit(int accountNumber, long long depositAmount)
 {
-  std::shared_ptr<IBankAccount> pcAccount = findAccount(accountNumber);
+  std::shared_ptr<IBankAccount> pcAccount = mapcAccounts->find(accountNumber);
 
   if (nullptr != pcAccount)
   {
@@ -156,7 +148,7 @@ void Bank::deposit(int accountNumber, long long depositAmount)
 //***************************************************************************
 void Bank::withdraw(int accountNumber, long long withdrawAmount)
 {
-  std::shared_ptr<IBankAccount> pcAccount = findAccount(accountNumber);
+  std::shared_ptr<IBankAccount> pcAccount = mapcAccounts->find(accountNumber);
 
   if (nullptr != pcAccount)
   {

@@ -17,6 +17,8 @@
 #include "ICommandReader.h"
 #include "FileCommandReader.h"
 #include "ICommand.h"
+#include "IAccountContainer.h"
+#include "AccountMap.h"
 
 //***************************************************************************
 // Function:    main
@@ -47,7 +49,9 @@ int main(int argc, char *argv[])
   std::shared_ptr<ICommandReader> pcCommandReader
                           (new FileCommandReader(argv[COMMAND_FILE_INDEX]));
 
-  std::shared_ptr<Bank> pcTheBank(new Bank(pcAccountReader));
+  std::shared_ptr<IAccountContainer> pcMap (new AccountMap());
+
+  std::shared_ptr<Bank> pcTheBank(new Bank(pcAccountReader, pcMap));
 
   pcCommandReader->readAll(pcTheBank, mapcCommands);
 

@@ -16,14 +16,15 @@
 #include "IBankAccount.h"
 #include "IReceiver.h"
 #include "ICommand.h"
+#include "IAccountContainer.h"
 
 class Bank : public IReceiver
 {
   private:
-    std::vector<std::shared_ptr<IBankAccount>> mapcAccounts;
+    std::shared_ptr<IAccountContainer> mapcAccounts;
 
   public:
-    Bank(std::shared_ptr<IAccountReader>&);
+    Bank(std::shared_ptr<IAccountReader>, std::shared_ptr<IAccountContainer>);
     virtual ~Bank();
 
     virtual void executeCommands(std::vector<std::shared_ptr<ICommand>>&);
@@ -33,7 +34,4 @@ class Bank : public IReceiver
 
     virtual void deposit(int, long long);
     virtual void withdraw(int, long long);
-
-  protected:
-    std::shared_ptr<IBankAccount> findAccount(int);
 };
