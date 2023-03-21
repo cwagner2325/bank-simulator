@@ -23,14 +23,7 @@
 //                  minMonthly - The minimum balance of the account before 
 //                                  a fee incurs for the month
 //***************************************************************************
-SavingsAccount::SavingsAccount(int accNumber, long long balance, double intRate,
-                long long monthlyFee, long long minMonthly) : 
-                IBankAccount(accNumber, balance, intRate)
-{
-  mMonthlyFee = monthlyFee;
-  mMinMonthlyBalance = minMonthly;
-  mbMonthlyFeeReached = false;
-}
+SavingsAccount::SavingsAccount() {};
 
 //***************************************************************************
 // Destructor:    SavingsAccount
@@ -97,4 +90,20 @@ std::ostream& SavingsAccount::print(std::ostream& rcOut) const
   rcOut << ", " << mMonthlyFee << ", " << mMinMonthlyBalance;
 
   return rcOut;
+}
+
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
+std::istream& SavingsAccount::read(std::istream& rcIn)
+{
+  IBankAccount::read(rcIn);
+  rcIn >> mMonthlyFee >> mMinMonthlyBalance;
+  return rcIn;
 }

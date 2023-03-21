@@ -10,6 +10,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <memory>
 
 class IBankAccount 
 {
@@ -29,7 +30,7 @@ class IBankAccount
  
   public:
 
-    IBankAccount(int, long long, double);
+    IBankAccount();
     virtual ~IBankAccount();
 
     virtual void deposit(long long);
@@ -41,5 +42,8 @@ class IBankAccount
 
     virtual bool equals(int);
 
+    virtual std::istream& read(std::istream&);
+
     friend std::ostream& operator<<(std::ostream&, const IBankAccount&);
+    friend std::istream& operator>>(std::istream&, std::shared_ptr<IBankAccount>);
 };

@@ -24,13 +24,7 @@
 //                                  a fee incurs
 //                  minBalanceFee - The fee charged if the minimum is reached
 //***************************************************************************
-CheckingAccount::CheckingAccount(int accNumber, long long balance, double intRate,
-                                 long long minBalance, long long minBalanceFee)
-                                  : IBankAccount(accNumber, balance, intRate)
-{
-  mMinBalance = minBalance;
-  mMinBalanceFee = minBalanceFee;
-}
+CheckingAccount::CheckingAccount() {};
 
 //***************************************************************************
 // Destructor:    CheckingAccount
@@ -108,4 +102,20 @@ std::ostream& CheckingAccount::print(std::ostream& rcOut) const
   rcOut << ", " << mMinBalance << ", " << mMinBalanceFee;
 
   return rcOut;
+}
+
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
+std::istream& CheckingAccount::read(std::istream& rcIn)
+{
+  IBankAccount::read(rcIn);
+  rcIn >> mMinBalance >> mMinBalanceFee;
+  return rcIn;
 }

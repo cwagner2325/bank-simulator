@@ -10,6 +10,7 @@
 #include <string>
 #include <iostream>
 #include <iomanip>
+#include <memory>
 #include <math.h>
 
 #include "IBankAccount.h"
@@ -24,19 +25,14 @@
 //                 balance       - the inital balance for the new account
 //                 interestRate  - the interest rate for the new account
 //***************************************************************************
-IBankAccount::IBankAccount(int accountNumber, long long balance, double interestRate)
-{
-  mAccountNumber = accountNumber;
-  mBalance = std::trunc(balance);
-  mInterestRate = interestRate;
-}
+IBankAccount::IBankAccount() {};
 
 //***************************************************************************
 // Destructor:    IBankAccount
 //
 // Description:   Destructor for IBankAccount
 //***************************************************************************
-IBankAccount::~IBankAccount() {}
+IBankAccount::~IBankAccount() {};
 
 //***************************************************************************
 // Function:      deposit
@@ -142,4 +138,33 @@ void IBankAccount::addInterest()
   {
     mBalance += std::trunc(mBalance * mInterestRate);
   }
+}
+
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
+std::istream& IBankAccount::read(std::istream& rcIn)
+{
+  rcIn >> mAccountNumber >> mBalance >> mInterestRate;
+  return rcIn;
+}
+
+//***************************************************************************
+// Function:    
+//
+// Description: 
+//
+// Parameters:  
+//
+// Returned:    
+//***************************************************************************
+std::istream& operator>>(std::istream& rcIn, std::shared_ptr<IBankAccount> pcBank)
+{
+  return pcBank->read(rcIn);
 }

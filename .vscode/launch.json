@@ -33,7 +33,7 @@
         {
             "name": "lldb - debug",
             "request": "launch",
-            "args": [],
+            "args": ["data/Accounts.txt", "data/Commands.txt"],
             "cwd": "${workspaceFolder}",  
             "environment": [],
             "type":  "lldb", // install CodeLLDB

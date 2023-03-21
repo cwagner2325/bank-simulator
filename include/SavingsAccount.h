@@ -24,7 +24,7 @@ class SavingsAccount : public IBankAccount
       
   public:
 
-    SavingsAccount(int, long long, double, long long, long long);
+    SavingsAccount();
     virtual ~SavingsAccount();
 
     virtual void withdraw(long long);
@@ -32,4 +32,6 @@ class SavingsAccount : public IBankAccount
     virtual void updateMonth();
 
     virtual std::ostream& print(std::ostream&) const; 
+
+    virtual std::istream& read(std::istream&);
 };

@@ -21,7 +21,7 @@ class CheckingAccount : public IBankAccount
       
   public:
 
-    CheckingAccount(int, long long, double, long long, long long);
+    CheckingAccount();
     virtual ~CheckingAccount();
 
     virtual void deposit(long long);
@@ -30,4 +30,6 @@ class CheckingAccount : public IBankAccount
     virtual void updateMonth();
 
     virtual std::ostream& print(std::ostream&) const; 
+
+    virtual std::istream& read(std::istream&);
 };
