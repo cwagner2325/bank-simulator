@@ -13,13 +13,11 @@
 #include "Money.h"
 
 //***************************************************************************
-// Function:    
+// Constructor:    Money
 //
-// Description: 
+// Description:    Initializes mAmount to default value of 0
 //
-// Parameters:  
-//
-// Returned:    
+// Parameters:     None
 //***************************************************************************
 Money::Money()
 {
@@ -27,13 +25,11 @@ Money::Money()
 }
 
 //***************************************************************************
-// Function:    
+// Constructor: Money
 //
-// Description: 
+// Description: sets mAmount to a specific value
 //
-// Parameters:  
-//
-// Returned:    
+// Parameters:  amount - the amount that mAmount is set to
 //***************************************************************************
 Money::Money(long long amount)
 {
@@ -41,13 +37,11 @@ Money::Money(long long amount)
 }
 
 //***************************************************************************
-// Function:    
+// Constructor:    Money
 //
-// Description: 
+// Description:    Copy constructor for Money
 //
-// Parameters:  
-//
-// Returned:    
+// Parameters:     rcMoney - the money object that is copied
 //***************************************************************************
 Money::Money(const Money& rcMoney)
 {
@@ -55,13 +49,13 @@ Money::Money(const Money& rcMoney)
 }
 
 //***************************************************************************
-// Function:    
+// Operator:    +
 //
-// Description: 
+// Description: Adds two money objects together
 //
-// Parameters:  
+// Parameters:  rcMoney - the object that is added
 //
-// Returned:    
+// Returned:    a money object with the new amount
 //***************************************************************************
 Money Money::operator+(const Money& rcMoney)
 {
@@ -71,13 +65,13 @@ Money Money::operator+(const Money& rcMoney)
 }
 
 //***************************************************************************
-// Function:    
+// Operator:    -
 //
-// Description: 
+// Description: subtracts two money objects
 //
-// Parameters:  
+// Parameters:  rcMoney - the object that is subtracted
 //
-// Returned:    
+// Returned:    a money object with the new amount
 //***************************************************************************
 Money Money::operator-(const Money& rcMoney)
 {
@@ -87,13 +81,13 @@ Money Money::operator-(const Money& rcMoney)
 }
 
 //***************************************************************************
-// Function:    
+// Operator:    =
 //
-// Description: 
+// Description: copies one money into another
 //
-// Parameters:  
+// Parameters:  rcMoney - the object that is copied from
 //
-// Returned:    
+// Returned:    a money object with the new amount
 //***************************************************************************
 Money Money::operator=(const Money& rcMoney)
 {
@@ -103,13 +97,13 @@ Money Money::operator=(const Money& rcMoney)
 }
 
 //***************************************************************************
-// Function:    
+// Operator:    >
 //
-// Description: 
+// Description: comapres the value of two money objects
 //
-// Parameters:  
+// Parameters:  rcMoney - the object that is compared
 //
-// Returned:    
+// Returned:    true if the first money is larger, else false
 //***************************************************************************
 bool Money::operator>(const Money& rcMoney)
 {
@@ -117,13 +111,13 @@ bool Money::operator>(const Money& rcMoney)
 }
 
 //***************************************************************************
-// Function:    
+// Operator:    +=
 //
-// Description: 
+// Description: Adds two money objects together
 //
-// Parameters:  
+// Parameters:  rcMoney - the object that is added
 //
-// Returned:    
+// Returned:    void
 //***************************************************************************
 void Money::operator+=(const Money& rcMoney)
 {
@@ -131,13 +125,13 @@ void Money::operator+=(const Money& rcMoney)
 }
 
 //***************************************************************************
-// Function:    
+// Operator:    -=
 //
-// Description: 
+// Description: Subtracts two money objects 
 //
-// Parameters:  
+// Parameters:  rcMoney - the object that is subtracted
 //
-// Returned:    
+// Returned:    void
 //***************************************************************************
 void Money::operator-=(const Money& rcMoney)
 {
@@ -145,13 +139,13 @@ void Money::operator-=(const Money& rcMoney)
 }
 
 //***************************************************************************
-// Function:    
+// Operator:    >=
 //
-// Description: 
+// Description: comapres the value of two money objects
 //
-// Parameters:  
+// Parameters:  rcMoney - the object that is compared
 //
-// Returned:    
+// Returned:    true if the first money is greater than or equal, else false
 //***************************************************************************
 bool Money::operator>=(const Money& rcMoney)
 {
@@ -159,27 +153,29 @@ bool Money::operator>=(const Money& rcMoney)
 }
 
 //***************************************************************************
-// Function:    
+// Operator:    *
 //
-// Description: 
+// Description: Multiplies a money and double
 //
-// Parameters:  
+// Parameters:  interestRate - the double that is multiplied
 //
-// Returned:    
+// Returned:    a money object with the new amount
 //***************************************************************************
 Money Money::operator*(double interestRate)
 {
-  return Money(mAmount *= interestRate);
+  mAmount = mAmount * interestRate;
+
+  return *this;
 }
 
 //***************************************************************************
-// Function:    
+// Operator:    *=
 //
-// Description: 
+// Description: Multiplies a money and double
 //
-// Parameters:  
+// Parameters:  interestRate - the double that is multiplied
 //
-// Returned:    
+// Returned:    void
 //***************************************************************************
 void Money::operator*=(double interestRate)
 {
@@ -187,13 +183,13 @@ void Money::operator*=(double interestRate)
 }
 
 //***************************************************************************
-// Function:    
+// Function:    getInUSD
 //
-// Description: 
+// Description: gets the amount of the money in USD
 //
-// Parameters:  
+// Parameters:  none
 //
-// Returned:    
+// Returned:    the amount of money in long long form
 //***************************************************************************
 long long Money::getInUSD() const
 {
@@ -201,13 +197,14 @@ long long Money::getInUSD() const
 }
 
 //***************************************************************************
-// Function:    
+// operator:    <<
 //
-// Description: 
+// Description: calls print to a stream polymorphically
 //
-// Parameters:  
+// Parameters:  rcOut   - the stream that is printed to
+//              rcMoney - the money object that is printed
 //
-// Returned:    
+// Returned:    a reference to the stream object
 //***************************************************************************
 std::ostream& operator<<(std::ostream& rcOut, const Money& rcMoney)
 {
@@ -215,13 +212,13 @@ std::ostream& operator<<(std::ostream& rcOut, const Money& rcMoney)
 }
 
 //***************************************************************************
-// Function:    
+// function:    print
 //
-// Description: 
+// Description: prints the money object to a stream
 //
-// Parameters:  
+// Parameters:  rcOut   - the stream that is printed to
 //
-// Returned:    
+// Returned:    a reference to the stream object
 //***************************************************************************
 std::ostream& Money::print(std::ostream& rcOut) const
 {
@@ -236,13 +233,13 @@ std::ostream& Money::print(std::ostream& rcOut) const
 }
 
 //***************************************************************************
-// Function:    
+// Function:    read
 //
-// Description: 
+// Description: reads a money object from a stream
 //
-// Parameters:  
+// Parameters:  rcIn - the stream that is read from
 //
-// Returned:    
+// Returned:    a reference to the stream
 //***************************************************************************
 std::istream& Money::read(std::istream& rcIn)
 {
@@ -252,13 +249,14 @@ std::istream& Money::read(std::istream& rcIn)
 }
 
 //***************************************************************************
-// Function:    
+// Operator:    >>
 //
-// Description: 
+// Description: reads a money object from a stream by calling read polymorphically
 //
-// Parameters:  
+// Parameters:  rcIn    - the stream that is read from
+//              rcMoney - the money object that is read
 //
-// Returned:    
+// Returned:    a reference to the stream
 //***************************************************************************
 std::istream& operator>>(std::istream& rcIn, Money& rcMoney)
 {
