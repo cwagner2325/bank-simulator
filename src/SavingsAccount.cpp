@@ -11,7 +11,7 @@
 #include "SavingsAccount.h"
 
 //***************************************************************************
-// Constructor:    SavingsAccount
+// Constructor:     SavingsAccount
 //
 // Description:     Constructor for Savings Account
 //

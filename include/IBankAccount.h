@@ -40,6 +40,8 @@ class IBankAccount
 
     virtual std::ostream& print(std::ostream&) const; 
 
+    int getAccountNumber() {return mAccountNumber;};
+
     virtual bool equals(int);
 
     virtual std::istream& read(std::istream&);
