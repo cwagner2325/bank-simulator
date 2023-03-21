@@ -23,16 +23,16 @@ class Money
 
     virtual ~Money() {};
 
-    Money operator+(const Money&);
-    Money operator-(const Money&);
+    Money operator+(const Money&) const;
+    Money operator-(const Money&) const;
     Money operator=(const Money&);
     void operator+=(const Money&);
     void operator-=(const Money&);
     void operator*=(double);
-    bool operator>(const Money&);
-    bool operator>=(const Money&);
+    bool operator>(const Money&) const;
+    bool operator>=(const Money&) const;
 
-    Money operator*(double);
+    Money operator*(double) const;
 
     virtual std::ostream& print(std::ostream&) const;
     friend std::ostream& operator<<(std::ostream&, const Money&);

@@ -57,11 +57,9 @@ Money::Money(const Money& rcMoney)
 //
 // Returned:    a money object with the new amount
 //***************************************************************************
-Money Money::operator+(const Money& rcMoney)
+Money Money::operator+(const Money& rcMoney) const
 {
-  mAmount = mAmount + rcMoney.getInUSD();
-
-  return *this;
+  return Money(mAmount + rcMoney.getInUSD());
 }
 
 //***************************************************************************
@@ -73,11 +71,9 @@ Money Money::operator+(const Money& rcMoney)
 //
 // Returned:    a money object with the new amount
 //***************************************************************************
-Money Money::operator-(const Money& rcMoney)
+Money Money::operator-(const Money& rcMoney) const
 {
-  mAmount = mAmount - rcMoney.getInUSD();
-
-  return *this;
+  return Money(mAmount - rcMoney.getInUSD());
 }
 
 //***************************************************************************
@@ -105,7 +101,7 @@ Money Money::operator=(const Money& rcMoney)
 //
 // Returned:    true if the first money is larger, else false
 //***************************************************************************
-bool Money::operator>(const Money& rcMoney)
+bool Money::operator>(const Money& rcMoney) const
 {
   return getInUSD() > rcMoney.getInUSD();
 }
@@ -147,7 +143,7 @@ void Money::operator-=(const Money& rcMoney)
 //
 // Returned:    true if the first money is greater than or equal, else false
 //***************************************************************************
-bool Money::operator>=(const Money& rcMoney)
+bool Money::operator>=(const Money& rcMoney) const
 {
   return getInUSD() >= rcMoney.getInUSD();
 }
@@ -161,11 +157,9 @@ bool Money::operator>=(const Money& rcMoney)
 //
 // Returned:    a money object with the new amount
 //***************************************************************************
-Money Money::operator*(double interestRate)
+Money Money::operator*(double interestRate) const
 {
-  mAmount = mAmount * interestRate;
-
-  return *this;
+  return Money(mAmount * interestRate);
 }
 
 //***************************************************************************
