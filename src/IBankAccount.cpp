@@ -13,6 +13,9 @@
 #include <memory>
 #include <math.h>
 #include "Money.h"
+#include "TieredInterest.h"
+#include "FlatInterest.h"
+#include "IInterest.h"
 
 #include "IBankAccount.h"
 
@@ -63,7 +66,7 @@ void IBankAccount::withdraw(Money withdrawAmount)
   mBalance -= withdrawAmount;
 }
 //***************************************************************************
-// Function:    primt
+// Function:    print
 //
 // Description: prints the account information to a stream
 //
@@ -73,10 +76,7 @@ void IBankAccount::withdraw(Money withdrawAmount)
 //***************************************************************************
 std::ostream& IBankAccount::print(std::ostream& rcOut) const
 {
-  const double DECIMAL = 100;
-
-  rcOut << mAccountNumber << ", " << mBalance << ", "
-        << (mInterestRate * DECIMAL) << "%";
+  rcOut << mAccountNumber << ", " << mBalance << ", ";
 
   return rcOut;
 }
@@ -135,10 +135,7 @@ bool IBankAccount::isBelow(Money amount)
 //***************************************************************************
 void IBankAccount::addInterest()
 {
-  if (!isBelow(0))
-  {
-    mBalance *= mInterestRate;
-  }
+  mBalance += mpcInterest->calculateInterest(mBalance);
 }
 
 //***************************************************************************
@@ -152,7 +149,25 @@ void IBankAccount::addInterest()
 //***************************************************************************
 std::istream& IBankAccount::read(std::istream& rcIn)
 {
-  rcIn >> mAccountNumber >> mBalance >> mInterestRate;
+  const char TIERED_INTEREST = 'T';
+  const char FLAT_INTEREST = 'F';
+
+  char interestIdentifier;
+
+  rcIn >> mAccountNumber >> mBalance;
+  rcIn >> interestIdentifier;
+
+  if (TIERED_INTEREST == interestIdentifier)
+  {
+    mpcInterest = std::make_shared <TieredInterest> ();
+    rcIn >> mpcInterest;
+  }
+  else if (FLAT_INTEREST == interestIdentifier)
+  {
+    mpcInterest = std::make_shared <FlatInterest> ();
+    rcIn >> mpcInterest;
+  }
+
   return rcIn;
 }
 

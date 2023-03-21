@@ -12,6 +12,7 @@
 #include <string>
 #include <memory>
 #include "Money.h"
+#include "IInterest.h"
 
 class IBankAccount 
 {
@@ -19,7 +20,7 @@ class IBankAccount
 
     int mAccountNumber;
 
-    double mInterestRate;
+    std::shared_ptr <IInterest> mpcInterest;
 
     Money mBalance;
 
