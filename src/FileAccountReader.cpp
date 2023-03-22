@@ -58,7 +58,7 @@ std::shared_ptr<IBankAccount> FileAccountReader::readAccount()
   const char SAVINGS_ACCOUNT = 'S';
   const char CHECKINGS_ACCOUNT = 'C';
 
-  char accountIdentity = '.';
+  char accountIdentity = '\0';
 
   std::shared_ptr<IBankAccount> pcAccount = nullptr;
   
