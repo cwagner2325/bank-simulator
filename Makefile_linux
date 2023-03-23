@@ -20,6 +20,10 @@ ACCOUNT_FILES= include/IBankAccount.h src/IBankAccount.cpp include/SavingsAccoun
 COMMAND_FILES= include/ICommand.h include/DepositCommand.h src/DepositCommand.cpp \
 							 include/WithdrawCommand.h src/WithdrawCommand.cpp include/UpdateMonthCommand.h \
 							 src/UpdateMonthCommand.cpp include/PrintAllCommand.h src/PrintAllCommand.cpp
+INTEREST_FILES= include/IInterest.h src/IInterest.cpp include/TieredInterest.h src/TieredInterest.cpp \
+								include/FlatInterest.h src/FlatInterest.cpp
+CONTAINER_FILES= include/IAccountContainer.h include/AccountMap.h src/AccountMap.cpp 
+MONEY_FILES= include/Money.h src/Money.cpp
 
 #compiler=clang++
 compiler=g++
@@ -49,7 +53,8 @@ valgrind: bin/main
 	valgrind ${VALGRIND_FLAGS} bin/main data/Accounts.txt data/Commands.txt
 
 printAll:
-	enscript ${ENSCRIPT_FLAGS} src/main.cpp ${BANK_FILES} ${READER_FILES} ${ACCOUNT_FILES} \
+	enscript ${ENSCRIPT_FLAGS} src/main.cpp ${INTEREST_FILES} ${BANK_FILES} \
+	${CONTAINER_FILES} ${MONEY_FILES} ${READER_FILES} ${ACCOUNT_FILES} \
 	${COMMAND_FILES} Makefile_linux | ps2pdf - bin/src.pdf
 
 runMe: bin/main
