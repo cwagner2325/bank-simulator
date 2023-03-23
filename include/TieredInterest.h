@@ -22,8 +22,8 @@ class TieredInterest : public IInterest
     virtual ~TieredInterest() {};
 
     virtual Money calculateInterest(const Money&);
+    
     virtual std::istream& read(std::istream&);
-
     virtual std::ostream& print(std::ostream&) const; 
   
   private:

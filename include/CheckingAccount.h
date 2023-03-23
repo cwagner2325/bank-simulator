@@ -27,10 +27,8 @@ class CheckingAccount : public IBankAccount
 
     virtual void deposit(const Money&);
     virtual void withdraw(const Money&);
-
     virtual void updateMonth();
 
     virtual std::ostream& print(std::ostream&) const; 
-
     virtual std::istream& read(std::istream&);
 };

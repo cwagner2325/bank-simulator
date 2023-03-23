@@ -23,7 +23,5 @@ class IAccountReader
 
     virtual ~IAccountReader() {};
 
-    virtual std::shared_ptr<IBankAccount> readAccount() = 0;
-    virtual void readAll(std::vector<std::shared_ptr<IBankAccount>>&) = 0;
-
+    virtual std::shared_ptr<IBankAccount> readNext() = 0;
 };

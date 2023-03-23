@@ -29,7 +29,7 @@ Bank::Bank(std::shared_ptr<IAccountReader> pcReader,
 
   mapcAccounts = pcContainer;
   
-  while (nullptr != (pcAccount = pcReader->readAccount()))
+  while (nullptr != (pcAccount = pcReader->readNext()))
   {
     mapcAccounts->insert(pcAccount);
   }
@@ -51,7 +51,7 @@ Bank::~Bank() {}
 //
 // Returned:    none
 //***************************************************************************
-void Bank::executeCommands(std::vector<std::shared_ptr<ICommand>>& acCommands)
+void Bank::executeCommands(std::vector<std::shared_ptr<ICommand>> acCommands)
 {
   for (int i = 0; i < static_cast<int> (acCommands.size()); i++) 
   {

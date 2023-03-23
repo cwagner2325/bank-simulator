@@ -28,7 +28,7 @@ class Bank : public IReceiver
     Bank(std::shared_ptr<IAccountReader>, std::shared_ptr<IAccountContainer>);
     virtual ~Bank();
 
-    virtual void executeCommands(std::vector<std::shared_ptr<ICommand>>&);
+    virtual void executeCommands(std::vector<std::shared_ptr<ICommand>>);
 
     virtual void printAll();
     virtual void updateMonth();

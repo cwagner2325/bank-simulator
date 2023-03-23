@@ -18,7 +18,7 @@ class AccountMap : public IAccountContainer
 {
   public:
     AccountMap();
-    ~AccountMap();
+    virtual ~AccountMap();
 
     virtual std::shared_ptr<IBankAccount> find(int);
 

@@ -39,15 +39,12 @@ class IBankAccount
     virtual void withdraw(const Money&);
 
     virtual void updateMonth() = 0;
-
-    virtual std::ostream& print(std::ostream&) const; 
-
     int getAccountNumber() {return mAccountNumber;};
-
     virtual bool equals(int);
 
-    virtual std::istream& read(std::istream&);
-
+    virtual std::ostream& print(std::ostream&) const; 
     friend std::ostream& operator<<(std::ostream&, const IBankAccount&);
+
+    virtual std::istream& read(std::istream&);
     friend std::istream& operator>>(std::istream&, std::shared_ptr<IBankAccount>);
 };

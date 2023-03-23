@@ -53,7 +53,7 @@ FileAccountReader::~FileAccountReader()
 //
 // Returned:    a shared pointer to the bank account object that is read in
 //***************************************************************************
-std::shared_ptr<IBankAccount> FileAccountReader::readAccount()
+std::shared_ptr<IBankAccount> FileAccountReader::readNext()
 {
   const char SAVINGS_ACCOUNT = 'S';
   const char CHECKINGS_ACCOUNT = 'C';
@@ -76,25 +76,4 @@ std::shared_ptr<IBankAccount> FileAccountReader::readAccount()
   }
 
   return pcAccount;
-}
-
-//***************************************************************************
-// Function:    readAll
-//
-// Description: reads all the accounts in the file and puts them into a vector
-//
-// Parameters:  rcAccounts - the to a reference to a vector that stores the
-//                           accounts read in
-//
-// Returned:    none
-//***************************************************************************
-void FileAccountReader::readAll(
-                        std::vector<std::shared_ptr<IBankAccount>>& rcAccounts)
-{
-  std::shared_ptr<IBankAccount> pcAccount;
-
-  while (nullptr != (pcAccount = readAccount()))
-  {
-    rcAccounts.push_back(pcAccount);
-  }
 }

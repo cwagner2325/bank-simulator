@@ -26,7 +26,5 @@ class FileAccountReader : public IAccountReader
     FileAccountReader(std::string);
     virtual ~FileAccountReader();
 
-    virtual std::shared_ptr<IBankAccount> readAccount();
-    virtual void readAll(std::vector<std::shared_ptr<IBankAccount>>&);
-
+    virtual std::shared_ptr<IBankAccount> readNext();
 };

@@ -41,7 +41,4 @@ class Money
     friend std::istream& operator>>(std::istream&, Money&);
 
     long long getInUSD() const;
-
-    
-
 };
