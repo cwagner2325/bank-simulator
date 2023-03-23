@@ -40,7 +40,7 @@ SavingsAccount::~SavingsAccount() {};
 //
 // Returned:    none
 //***************************************************************************
-void SavingsAccount::withdraw(Money withdrawAmount)
+void SavingsAccount::withdraw(const Money& withdrawAmount)
 {
   IBankAccount::withdraw(withdrawAmount);
 

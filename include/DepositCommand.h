@@ -19,7 +19,7 @@
 class DepositCommand : public ICommand
 {
   public:
-    DepositCommand(std::shared_ptr<IReceiver>, int, Money);
+    DepositCommand(std::shared_ptr<IReceiver>, int, const Money&);
     virtual ~DepositCommand() {};
 
     virtual void execute();

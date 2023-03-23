@@ -27,7 +27,7 @@
 //                 depositAmount - the amount that is deposited
 //***************************************************************************
 DepositCommand::DepositCommand(std::shared_ptr<IReceiver> pReceiver, 
-                               int accountNumber, Money depositAmount)
+                               int accountNumber, const Money& depositAmount)
 {
   mReceiver = pReceiver;
   mAccountNumber = accountNumber;

@@ -37,7 +37,7 @@ CheckingAccount::~CheckingAccount() {}
 //
 // Returned:    none
 //***************************************************************************
-void CheckingAccount::deposit(Money depositAmount)
+void CheckingAccount::deposit(const Money& depositAmount)
 {
   IBankAccount::deposit(depositAmount);
 
@@ -57,7 +57,7 @@ void CheckingAccount::deposit(Money depositAmount)
 //
 // Returned:    none
 //***************************************************************************
-void CheckingAccount::withdraw(Money withdrawAmount)
+void CheckingAccount::withdraw(const Money& withdrawAmount)
 {
   IBankAccount::withdraw(withdrawAmount);
 

@@ -21,7 +21,7 @@ class IReceiver
     virtual void printAll() = 0;
     virtual void updateMonth() = 0;
 
-    virtual void deposit(int, Money) = 0;
-    virtual void withdraw(int, Money) = 0;
+    virtual void deposit(int, const Money&) = 0;
+    virtual void withdraw(int, const Money&) = 0;
 };
 

@@ -28,7 +28,7 @@ class SavingsAccount : public IBankAccount
     SavingsAccount();
     virtual ~SavingsAccount();
 
-    virtual void withdraw(Money);
+    virtual void withdraw(const Money&);
 
     virtual void updateMonth();
 

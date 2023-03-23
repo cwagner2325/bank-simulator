@@ -26,7 +26,7 @@ class IBankAccount
 
   protected: 
 
-    bool isBelow(Money);
+    bool isBelow(const Money&);
 
     void addInterest();
  
@@ -35,8 +35,8 @@ class IBankAccount
     IBankAccount();
     virtual ~IBankAccount();
 
-    virtual void deposit(Money);
-    virtual void withdraw(Money);
+    virtual void deposit(const Money&);
+    virtual void withdraw(const Money&);
 
     virtual void updateMonth() = 0;
 

@@ -18,7 +18,7 @@
 class WithdrawCommand : public ICommand
 {
   public:
-    WithdrawCommand(std::shared_ptr<IReceiver>, int, Money);
+    WithdrawCommand(std::shared_ptr<IReceiver>, int, const Money&);
     virtual ~WithdrawCommand() {};
 
     virtual void execute();

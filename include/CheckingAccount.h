@@ -25,8 +25,8 @@ class CheckingAccount : public IBankAccount
     CheckingAccount();
     virtual ~CheckingAccount();
 
-    virtual void deposit(Money);
-    virtual void withdraw(Money);
+    virtual void deposit(const Money&);
+    virtual void withdraw(const Money&);
 
     virtual void updateMonth();
 

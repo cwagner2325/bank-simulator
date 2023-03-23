@@ -33,6 +33,6 @@ class Bank : public IReceiver
     virtual void printAll();
     virtual void updateMonth();
 
-    virtual void deposit(int, Money);
-    virtual void withdraw(int, Money);
+    virtual void deposit(int, const Money&);
+    virtual void withdraw(int, const Money&);
 };

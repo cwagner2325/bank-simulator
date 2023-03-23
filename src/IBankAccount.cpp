@@ -46,7 +46,7 @@ IBankAccount::~IBankAccount() {};
 //
 // Returned:      none
 //***************************************************************************
-void IBankAccount::deposit(Money depositAmount)
+void IBankAccount::deposit(const Money& depositAmount)
 {
   mBalance += depositAmount;
 }
@@ -60,7 +60,7 @@ void IBankAccount::deposit(Money depositAmount)
 //
 // Returned:      none
 //***************************************************************************
-void IBankAccount::withdraw(Money withdrawAmount)
+void IBankAccount::withdraw(const Money& withdrawAmount)
 {
   mBalance -= withdrawAmount;
 }
@@ -118,7 +118,7 @@ std::ostream& operator<<(std::ostream& rcOut, const IBankAccount& rcAccount)
 //
 // Returned:    true if the account balance is below the argument, else false
 //***************************************************************************
-bool IBankAccount::isBelow(Money amount)
+bool IBankAccount::isBelow(const Money& amount)
 {
   return amount >= mBalance;
 }

@@ -23,7 +23,7 @@
 //                 withdrawAmount - the amount that is withdrawed
 //***************************************************************************
 WithdrawCommand::WithdrawCommand(std::shared_ptr<IReceiver> pReceiver, 
-                                 int accountNumber, Money withdrawAmount)
+                                 int accountNumber, const Money& withdrawAmount)
 {
   mReceiver = pReceiver;
   mAccountNumber = accountNumber;
