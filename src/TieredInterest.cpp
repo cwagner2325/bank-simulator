@@ -29,7 +29,7 @@ Money TieredInterest::calculateInterest(const Money& rcMoney)
 
   for (int i = macTiers.size() - 1; i >= 0; i--)
   {
-    if (rcMoney > macTiers.at(i).first)
+    if (rcMoney >= macTiers.at(i).first)
     {
       cInterest = rcMoney * macTiers.at(i).second;
       break;

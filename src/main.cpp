@@ -38,7 +38,8 @@ int main(int argc, char *argv[])
 
   if (CORRECT_NUM_COMMANDS_ARGS != argc) 
   {
-    std::cout << "ERROR: Incorrect Number of Command Line Args" << std::endl << std::endl;
+    std::cout << "ERROR: Incorrect Number of Command Line Args" << std::endl 
+              << std::endl;
     return EXIT_FAILURE;
   }
 
