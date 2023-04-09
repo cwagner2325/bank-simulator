@@ -45,5 +45,12 @@ DepositCommand::DepositCommand(std::shared_ptr<IReceiver> pReceiver,
 //***************************************************************************
 void DepositCommand::execute() 
 {
-  mReceiver->deposit(mAccountNumber, mDepositAmount);
+  try 
+  {
+    mReceiver->deposit(mAccountNumber, mDepositAmount);
+  }
+  catch (std::out_of_range& err)
+  {
+    throw err;
+  }
 }

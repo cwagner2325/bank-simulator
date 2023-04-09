@@ -8,6 +8,7 @@
 //********************************************************
 
 #include <memory>
+#include <exception>
 
 #include "AccountMap.h"
 #include "IBankAccount.h"
@@ -48,8 +49,11 @@ std::shared_ptr<IBankAccount> AccountMap::find(int key)
   {
     return mapcTheMap.find(key)->second;
   }
-  
-  return nullptr;
+  else
+  {
+    throw std::out_of_range("Item with key " + std::to_string(key) 
+                            + " was not found.");
+  }
 }
 
 //***************************************************************************

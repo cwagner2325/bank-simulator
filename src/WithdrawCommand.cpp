@@ -41,5 +41,12 @@ WithdrawCommand::WithdrawCommand(std::shared_ptr<IReceiver> pReceiver,
 //***************************************************************************
 void WithdrawCommand::execute()
 {
-  mReceiver->withdraw(mAccountNumber, mWithdrawAmount);
+  try 
+  {
+    mReceiver->withdraw(mAccountNumber, mWithdrawAmount);
+  }
+  catch (std::out_of_range& err)
+  {
+    throw err;
+  }
 }

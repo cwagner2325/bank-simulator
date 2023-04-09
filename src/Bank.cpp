@@ -7,8 +7,9 @@
 // Purpose:    To implement the Bank
 //********************************************************
 
-#include "memory"
-#include "vector"
+#include <memory>
+#include <vector>
+#include <exception>
 
 #include "IAccountReader.h"
 #include "IBankAccount.h"
@@ -55,7 +56,15 @@ void Bank::executeCommands(std::vector<std::shared_ptr<ICommand>> acCommands)
 {
   for (int i = 0; i < static_cast<int> (acCommands.size()); i++) 
   {
-    acCommands.at(i)->execute();
+    try 
+    {
+      acCommands.at(i)->execute();
+    }
+    catch (std::out_of_range& err)
+    {
+      std::cout << std::endl << err.what() << std::endl << std::endl;
+      exit(EXIT_FAILURE);
+    }
   }
 }
 
@@ -127,11 +136,14 @@ void Bank::updateMonth()
 //***************************************************************************
 void Bank::deposit(int accountNumber, const Money& depositAmount)
 {
-  std::shared_ptr<IBankAccount> pcAccount = mapcAccounts->find(accountNumber);
-
-  if (nullptr != pcAccount)
+  try 
   {
+    std::shared_ptr<IBankAccount> pcAccount = mapcAccounts->find(accountNumber);
     pcAccount->deposit(depositAmount);
+  }
+  catch (std::out_of_range& err)
+  {
+    throw err;
   }
 }
 
@@ -148,10 +160,13 @@ void Bank::deposit(int accountNumber, const Money& depositAmount)
 //***************************************************************************
 void Bank::withdraw(int accountNumber, const Money& withdrawAmount)
 {
-  std::shared_ptr<IBankAccount> pcAccount = mapcAccounts->find(accountNumber);
-
-  if (nullptr != pcAccount)
+  try 
   {
+    std::shared_ptr<IBankAccount> pcAccount = mapcAccounts->find(accountNumber);
     pcAccount->withdraw(withdrawAmount);
+  }
+  catch (std::out_of_range& err)
+  {
+    throw err;
   }
 }
