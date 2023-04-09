@@ -34,11 +34,7 @@ class Money
 
     Money operator*(double) const;
 
-    virtual std::ostream& print(std::ostream&) const;
     friend std::ostream& operator<<(std::ostream&, const Money&);
 
-    virtual std::istream& read(std::istream&);
     friend std::istream& operator>>(std::istream&, Money&);
-
-    long long getInUSD() const;
 };

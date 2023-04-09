@@ -45,7 +45,7 @@ Money::Money(long long amount)
 //***************************************************************************
 Money::Money(const Money& rcMoney)
 {
-  mAmount = rcMoney.getInUSD();
+  mAmount = rcMoney.mAmount;
 }
 
 //***************************************************************************
@@ -59,7 +59,7 @@ Money::Money(const Money& rcMoney)
 //***************************************************************************
 Money Money::operator+(const Money& rcMoney) const
 {
-  return Money(mAmount + rcMoney.getInUSD());
+  return Money(mAmount + rcMoney.mAmount);
 }
 
 //***************************************************************************
@@ -73,7 +73,7 @@ Money Money::operator+(const Money& rcMoney) const
 //***************************************************************************
 Money Money::operator-(const Money& rcMoney) const
 {
-  return Money(mAmount - rcMoney.getInUSD());
+  return Money(mAmount - rcMoney.mAmount);
 }
 
 //***************************************************************************
@@ -87,7 +87,7 @@ Money Money::operator-(const Money& rcMoney) const
 //***************************************************************************
 Money Money::operator=(const Money& rcMoney)
 {
-  mAmount = rcMoney.getInUSD();
+  mAmount = rcMoney.mAmount;
 
   return *this;
 }
@@ -103,7 +103,7 @@ Money Money::operator=(const Money& rcMoney)
 //***************************************************************************
 bool Money::operator>(const Money& rcMoney) const
 {
-  return getInUSD() > rcMoney.getInUSD();
+  return mAmount > rcMoney.mAmount;
 }
 
 //***************************************************************************
@@ -117,7 +117,7 @@ bool Money::operator>(const Money& rcMoney) const
 //***************************************************************************
 void Money::operator+=(const Money& rcMoney)
 {
-  mAmount = mAmount + rcMoney.getInUSD();
+  mAmount = mAmount + rcMoney.mAmount;
 }
 
 //***************************************************************************
@@ -131,7 +131,7 @@ void Money::operator+=(const Money& rcMoney)
 //***************************************************************************
 void Money::operator-=(const Money& rcMoney)
 {
-  mAmount = mAmount - rcMoney.getInUSD();
+  mAmount = mAmount - rcMoney.mAmount;
 }
 
 //***************************************************************************
@@ -145,7 +145,7 @@ void Money::operator-=(const Money& rcMoney)
 //***************************************************************************
 bool Money::operator>=(const Money& rcMoney) const
 {
-  return getInUSD() >= rcMoney.getInUSD();
+  return mAmount >= rcMoney.mAmount;
 }
 
 //***************************************************************************
@@ -177,20 +177,6 @@ void Money::operator*=(double interestRate)
 }
 
 //***************************************************************************
-// Function:    getInUSD
-//
-// Description: gets the amount of the money in USD
-//
-// Parameters:  none
-//
-// Returned:    the amount of money in long long form
-//***************************************************************************
-long long Money::getInUSD() const
-{
-  return mAmount;
-}
-
-//***************************************************************************
 // operator:    <<
 //
 // Description: calls print to a stream polymorphically
@@ -202,44 +188,14 @@ long long Money::getInUSD() const
 //***************************************************************************
 std::ostream& operator<<(std::ostream& rcOut, const Money& rcMoney)
 {
-  return rcMoney.print(rcOut);
-}
-
-//***************************************************************************
-// function:    print
-//
-// Description: prints the money object to a stream
-//
-// Parameters:  rcOut   - the stream that is printed to
-//
-// Returned:    a reference to the stream object
-//***************************************************************************
-std::ostream& Money::print(std::ostream& rcOut) const
-{
   const char MONEY_PREFIX = '$';
   const int NUM_DECIMALS = 2;
   const double DECIMAL = 100;
 
   rcOut << MONEY_PREFIX << std::fixed << std::setprecision(NUM_DECIMALS)
-        << mAmount / DECIMAL;
+        << rcMoney.mAmount / DECIMAL;
 
   return rcOut;
-}
-
-//***************************************************************************
-// Function:    read
-//
-// Description: reads a money object from a stream
-//
-// Parameters:  rcIn - the stream that is read from
-//
-// Returned:    a reference to the stream
-//***************************************************************************
-std::istream& Money::read(std::istream& rcIn)
-{
-  rcIn >> mAmount;
-
-  return rcIn;
 }
 
 //***************************************************************************
@@ -253,7 +209,8 @@ std::istream& Money::read(std::istream& rcIn)
 // Returned:    a reference to the stream
 //***************************************************************************
 std::istream& operator>>(std::istream& rcIn, Money& rcMoney)
-{
-  rcMoney.read(rcIn);
+{ 
+  rcIn >> rcMoney.mAmount;
+
   return rcIn;
 }
