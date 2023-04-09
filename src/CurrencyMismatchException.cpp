@@ -13,9 +13,9 @@
 #include "CurrencyMismatchException.h"
 
 //***************************************************************************
-// Constructor:    
+// Constructor:    CurrencyMismatchException
 //
-// Description: 
+// Description:    Initalizes a CurrencyMismatchException object
 //***************************************************************************
 CurrencyMismatchException::CurrencyMismatchException()
 {
@@ -23,11 +23,11 @@ CurrencyMismatchException::CurrencyMismatchException()
 }
 
 //***************************************************************************
-// Constructor:    
+// Constructor:    CurrencyMismatchException
 //
-// Description: 
+// Description:    Initalizes a CurrencyMismatchException object from a string
 //
-// Parameters:  
+// Parameters:     cMessage - the error message that is stored
 //***************************************************************************
 CurrencyMismatchException::CurrencyMismatchException(std::string cMessage)
 {
@@ -35,11 +35,12 @@ CurrencyMismatchException::CurrencyMismatchException(std::string cMessage)
 }
 
 //***************************************************************************
-// Constructor:    
+// Constructor:    CurrencyMismatchException
 //
-// Description: 
+// Description:    Initalizes a CurrencyMismatchException object from another 
+//                 CurrencyMismatchException object
 //
-// Parameters:  
+// Parameters:     rcException - the object that is copied
 //***************************************************************************
 CurrencyMismatchException::CurrencyMismatchException
   (const CurrencyMismatchException& rcException)
@@ -48,22 +49,21 @@ CurrencyMismatchException::CurrencyMismatchException
 }
 
 //***************************************************************************
-// Destructor:    
+// Destructor:    CurrencyMismatchException
 //
-// Description: 
-//
-// Parameters:  
+// Description:   Destructor for CurrencyMismatchException
 //***************************************************************************
 CurrencyMismatchException::~CurrencyMismatchException() {}
 
 //***************************************************************************
-// Operator:    
+// Operator:    =
 //
-// Description: 
+// Description: returns a new CurrencyMismatchException object by copy
 //
-// Parameters:  
+// Parameters:  rcException - the CurrencyMismatchException object that is
+//                            copied
 //
-// Returned:    
+// Returned:    a copy of a CurrencyMismatchException object
 //***************************************************************************
 CurrencyMismatchException CurrencyMismatchException::operator=
   (const CurrencyMismatchException& rcException)
@@ -72,13 +72,13 @@ CurrencyMismatchException CurrencyMismatchException::operator=
 }
 
 //***************************************************************************
-// Function:    
+// Function:    what
 //
-// Description: 
+// Description: returns the error message
 //
-// Parameters:  
+// Parameters:  none
 //
-// Returned:    
+// Returned:    a string that is the error message
 //***************************************************************************
 std::string CurrencyMismatchException::what()
 {
