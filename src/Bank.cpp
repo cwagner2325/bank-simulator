@@ -62,7 +62,8 @@ void Bank::executeCommands(std::vector<std::shared_ptr<ICommand>> acCommands)
     }
     catch (std::out_of_range& err)
     {
-      std::cout << std::endl << err.what() << std::endl << std::endl;
+      std::cout << std::endl << "Bank::executeCommands failed: " << err.what()
+                << std::endl << std::endl;
       exit(EXIT_FAILURE);
     }
   }
