@@ -11,6 +11,7 @@
 #include <iomanip>
 
 #include "Money.h"
+#include "CurrencyMismatchException.h"
 
 //***************************************************************************
 // Constructor:    Money
@@ -61,7 +62,14 @@ Money::Money(const Money& rcMoney)
 //***************************************************************************
 Money Money::operator+(const Money& rcMoney) const
 {
-  return Money(mAmount + rcMoney.mAmount, mCurrency);
+  if (mCurrency == rcMoney.mCurrency)
+  {
+    return Money(mAmount + rcMoney.mAmount, mCurrency);
+  }
+  else
+  {
+    throw CurrencyMismatchException("failed: operator+");
+  }
 }
 
 //***************************************************************************
@@ -75,7 +83,14 @@ Money Money::operator+(const Money& rcMoney) const
 //***************************************************************************
 Money Money::operator-(const Money& rcMoney) const
 {
-  return Money(mAmount - rcMoney.mAmount, mCurrency);
+  if (mCurrency == rcMoney.mCurrency)
+  {
+    return Money(mAmount - rcMoney.mAmount, mCurrency);
+  }
+  else
+  {
+    throw CurrencyMismatchException("failed: operator-");
+  }
 }
 
 //***************************************************************************
@@ -89,6 +104,7 @@ Money Money::operator-(const Money& rcMoney) const
 //***************************************************************************
 Money Money::operator=(const Money& rcMoney)
 {
+  mCurrency = rcMoney.mCurrency;
   mAmount = rcMoney.mAmount;
 
   return *this;
@@ -105,7 +121,14 @@ Money Money::operator=(const Money& rcMoney)
 //***************************************************************************
 bool Money::operator>(const Money& rcMoney) const
 {
-  return mAmount > rcMoney.mAmount;
+  if (mCurrency == rcMoney.mCurrency)
+  {
+    return mAmount > rcMoney.mAmount;
+  }
+  else
+  {
+    throw CurrencyMismatchException("failed: operator>");
+  }
 }
 
 //***************************************************************************
@@ -119,7 +142,14 @@ bool Money::operator>(const Money& rcMoney) const
 //***************************************************************************
 void Money::operator+=(const Money& rcMoney)
 {
-  mAmount = mAmount + rcMoney.mAmount;
+  if (mCurrency == rcMoney.mCurrency)
+  {
+    mAmount = mAmount + rcMoney.mAmount;
+  }
+  else 
+  {
+    throw CurrencyMismatchException("failed: operator+=");
+  }
 }
 
 //***************************************************************************
@@ -133,7 +163,14 @@ void Money::operator+=(const Money& rcMoney)
 //***************************************************************************
 void Money::operator-=(const Money& rcMoney)
 {
-  mAmount = mAmount - rcMoney.mAmount;
+  if (mCurrency == rcMoney.mCurrency)
+  {
+    mAmount = mAmount - rcMoney.mAmount;
+  }
+  else
+  {
+    throw CurrencyMismatchException("failed: operator-=");
+  }
 }
 
 //***************************************************************************
@@ -147,7 +184,14 @@ void Money::operator-=(const Money& rcMoney)
 //***************************************************************************
 bool Money::operator>=(const Money& rcMoney) const
 {
-  return mAmount >= rcMoney.mAmount;
+  if (mCurrency == rcMoney.mCurrency)
+  {
+    return mAmount >= rcMoney.mAmount;
+  }
+  else
+  {
+    throw CurrencyMismatchException("failed: operator>=");
+  }
 }
 
 //***************************************************************************

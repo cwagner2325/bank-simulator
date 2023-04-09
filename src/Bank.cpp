@@ -14,6 +14,7 @@
 #include "IAccountReader.h"
 #include "IBankAccount.h"
 #include "Bank.h"
+#include "CurrencyMismatchException.h"
 
 //***************************************************************************
 // Constructor:    Bank
@@ -65,6 +66,10 @@ void Bank::executeCommands(std::vector<std::shared_ptr<ICommand>> acCommands)
       std::cout << std::endl << "Bank::executeCommands failed: " << err.what()
                 << std::endl << std::endl;
       exit(EXIT_FAILURE);
+    }
+    catch (CurrencyMismatchException& err)
+    {
+      ;
     }
   }
 }
