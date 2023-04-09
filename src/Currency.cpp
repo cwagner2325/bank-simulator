@@ -143,13 +143,13 @@ bool operator==(const Currency& rcCurr1, const Currency& rcCurr2)
 }
 
 //***************************************************************************
-// Operator:    
+// Function:    from_str
 //
-// Description: 
+// Description: sets a type of currency from a string
 //
-// Parameters:  
+// Parameters:  cStr - the string that is used to set a type
 //
-// Returned:    
+// Returned:    none
 //***************************************************************************
 void Currency::from_str(std::string cStr)
 {
