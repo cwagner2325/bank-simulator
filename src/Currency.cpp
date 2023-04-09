@@ -15,7 +15,7 @@
 //***************************************************************************
 // Constructor:    Currency
 //
-// Description:    defualt constructor for Currency
+// Description:    Initalizes a currency object
 //***************************************************************************
 Currency::Currency() {};
 
@@ -109,6 +109,22 @@ std::istream& operator>>(std::istream& rcIn, Currency& rcCurrency)
   rcCurrency.from_str(cTemp);
 
   return rcIn;
+}
+
+//***************************************************************************
+// Operator:    =
+//
+// Description: copies one currency into another
+//
+// Parameters:  rcCurrency - the currency that is copied
+//
+// Returned:    the currency that is created
+//***************************************************************************
+Currency Currency::operator=(const Currency& rcCurrency)
+{
+  meType = rcCurrency.meType;
+
+  return *this;
 }
 
 //***************************************************************************

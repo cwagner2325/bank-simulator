@@ -27,6 +27,8 @@ class Currency
     void from_str(std::string cStr);
     friend std::istream& operator>>(std::istream&, Currency&);
 
+    Currency operator=(const Currency&);
+
     friend bool operator==(const Currency&, const Currency&);
 
     enum class Type 

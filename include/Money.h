@@ -11,14 +11,17 @@
 
 #include <iostream>
 
+#include "Currency.h"
+
 class Money
 {
   private: 
     long long mAmount = 0;
+    Currency mCurrency;
 
   public:
     Money();
-    Money(long long);
+    Money(long long, const Currency&);
     Money(const Money&);
 
     virtual ~Money() {};
@@ -37,4 +40,6 @@ class Money
     friend std::ostream& operator<<(std::ostream&, const Money&);
 
     friend std::istream& operator>>(std::istream&, Money&);
+
+    Currency getCurrency() const { return mCurrency; };
 };

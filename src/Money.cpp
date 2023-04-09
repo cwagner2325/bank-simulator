@@ -31,8 +31,9 @@ Money::Money()
 //
 // Parameters:  amount - the amount that mAmount is set to
 //***************************************************************************
-Money::Money(long long amount)
+Money::Money(long long amount, const Currency& rcCurrency)
 {
+  mCurrency = rcCurrency;
   mAmount = amount;
 }
 
@@ -45,6 +46,7 @@ Money::Money(long long amount)
 //***************************************************************************
 Money::Money(const Money& rcMoney)
 {
+  mCurrency = rcMoney.mCurrency;
   mAmount = rcMoney.mAmount;
 }
 
@@ -59,7 +61,7 @@ Money::Money(const Money& rcMoney)
 //***************************************************************************
 Money Money::operator+(const Money& rcMoney) const
 {
-  return Money(mAmount + rcMoney.mAmount);
+  return Money(mAmount + rcMoney.mAmount, mCurrency);
 }
 
 //***************************************************************************
@@ -73,7 +75,7 @@ Money Money::operator+(const Money& rcMoney) const
 //***************************************************************************
 Money Money::operator-(const Money& rcMoney) const
 {
-  return Money(mAmount - rcMoney.mAmount);
+  return Money(mAmount - rcMoney.mAmount, mCurrency);
 }
 
 //***************************************************************************
@@ -159,7 +161,7 @@ bool Money::operator>=(const Money& rcMoney) const
 //***************************************************************************
 Money Money::operator*(double interestRate) const
 {
-  return Money(mAmount * interestRate);
+  return Money(mAmount * interestRate, mCurrency);
 }
 
 //***************************************************************************
@@ -188,12 +190,11 @@ void Money::operator*=(double interestRate)
 //***************************************************************************
 std::ostream& operator<<(std::ostream& rcOut, const Money& rcMoney)
 {
-  const char MONEY_PREFIX = '$';
   const int NUM_DECIMALS = 2;
   const double DECIMAL = 100;
 
-  rcOut << MONEY_PREFIX << std::fixed << std::setprecision(NUM_DECIMALS)
-        << rcMoney.mAmount / DECIMAL;
+  rcOut << rcMoney.mCurrency.to_string() << std::fixed 
+        << std::setprecision(NUM_DECIMALS) << rcMoney.mAmount / DECIMAL;
 
   return rcOut;
 }
@@ -210,6 +211,11 @@ std::ostream& operator<<(std::ostream& rcOut, const Money& rcMoney)
 //***************************************************************************
 std::istream& operator>>(std::istream& rcIn, Money& rcMoney)
 { 
+  std::string cTemp;
+
+  rcIn >> cTemp;
+  rcMoney.mCurrency.from_str(cTemp);
+
   rcIn >> rcMoney.mAmount;
 
   return rcIn;

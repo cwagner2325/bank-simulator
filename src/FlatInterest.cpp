@@ -24,12 +24,12 @@
 //***************************************************************************
 Money FlatInterest::calculateInterest(const Money& rcMoney)
 {
-  if (rcMoney > 0) 
+  if (rcMoney > Money(0, rcMoney.getCurrency())) 
   {
     return rcMoney * mInterestRate;
   }
 
-  return 0;
+  return Money(0, rcMoney.getCurrency());
 }
 
 //***************************************************************************

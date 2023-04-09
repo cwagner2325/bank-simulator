@@ -25,7 +25,7 @@
 //***************************************************************************
 Money TieredInterest::calculateInterest(const Money& rcMoney)
 {
-  Money cInterest = 0; 
+  Money cInterest(0, rcMoney.getCurrency());
 
   for (int i = macTiers.size() - 1; i >= 0; i--)
   {
