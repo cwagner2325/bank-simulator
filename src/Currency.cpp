@@ -157,7 +157,7 @@ void Currency::from_str(std::string cStr)
   {
     meType = Currency::Type::USD;
   }
-  else if (cStr == "GMP")
+  else if (cStr == "GBP")
   {
     meType = Currency::Type::GBP;
   }
