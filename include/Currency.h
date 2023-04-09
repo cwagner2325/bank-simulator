@@ -24,10 +24,8 @@ class Currency
     std::string to_string() const;
     friend std::ostream& operator<<(std::ostream&, const Currency&);
 
-    void from_str(std::string cStr);
+    void from_str(std::string);
     friend std::istream& operator>>(std::istream&, Currency&);
-
-    Currency operator=(const Currency&);
 
     friend bool operator==(const Currency&, const Currency&);
 

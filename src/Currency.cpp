@@ -112,22 +112,6 @@ std::istream& operator>>(std::istream& rcIn, Currency& rcCurrency)
 }
 
 //***************************************************************************
-// Operator:    =
-//
-// Description: copies one currency into another
-//
-// Parameters:  rcCurrency - the currency that is copied
-//
-// Returned:    the currency that is created
-//***************************************************************************
-Currency Currency::operator=(const Currency& rcCurrency)
-{
-  meType = rcCurrency.meType;
-
-  return *this;
-}
-
-//***************************************************************************
 // Operator:    ==
 //
 // Description: compares the equality of two currency's types
