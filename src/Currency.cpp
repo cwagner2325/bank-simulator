@@ -64,13 +64,13 @@ std::string Currency::to_string() const
   switch(meType)
   {
     case Type::USD:
-      return "USD";
+      return DOLLARS;
     case Type::GBP:
-      return "GBP";
+      return POUNDS;
     case Type::EUR:
-      return "EUR";
+      return EUROS;
     case Type::YEN:
-      return "YEN";
+      return YEN;
     default:
       return "";
   }
@@ -137,19 +137,19 @@ bool operator==(const Currency& rcCurr1, const Currency& rcCurr2)
 //***************************************************************************
 void Currency::from_str(std::string cStr)
 {
-  if (cStr == "USD")
+  if (DOLLARS == cStr)
   {
     meType = Currency::Type::USD;
   }
-  else if (cStr == "GBP")
+  else if (POUNDS == cStr)
   {
     meType = Currency::Type::GBP;
   }
-  else if (cStr == "EUR")
+  else if (EUROS == cStr)
   {
     meType = Currency::Type::EUR;
   }
-  else if (cStr == "YEN")
+  else if (YEN == cStr)
   {
     meType = Currency::Type::YEN;
   }

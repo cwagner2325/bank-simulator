@@ -38,5 +38,10 @@ class Currency
     };
   
   private:
+    inline static const std::string DOLLARS = "USD";
+    inline static std::string EUROS = "EUR";
+    inline static std::string YEN = "YEN";
+    inline static std::string POUNDS = "GBP";
+
     Currency::Type meType;
 };
