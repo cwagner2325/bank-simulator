@@ -27,5 +27,5 @@ class CurrencyMismatchException : public std::exception
     std::string what();
 
   private:
-    std::string cErrorMessage;
+    std::string mcErrorMessage;
 };

@@ -19,7 +19,7 @@
 //***************************************************************************
 CurrencyMismatchException::CurrencyMismatchException()
 {
-  cErrorMessage = nullptr;
+  mcErrorMessage = nullptr;
 }
 
 //***************************************************************************
@@ -31,7 +31,7 @@ CurrencyMismatchException::CurrencyMismatchException()
 //***************************************************************************
 CurrencyMismatchException::CurrencyMismatchException(std::string cMessage)
 {
-  cErrorMessage = cMessage.data();
+  mcErrorMessage = cMessage.data();
 }
 
 //***************************************************************************
@@ -45,7 +45,7 @@ CurrencyMismatchException::CurrencyMismatchException(std::string cMessage)
 CurrencyMismatchException::CurrencyMismatchException
   (const CurrencyMismatchException& rcException)
 {
-  cErrorMessage = rcException.cErrorMessage;
+  mcErrorMessage = rcException.mcErrorMessage;
 }
 
 //***************************************************************************
@@ -82,5 +82,5 @@ CurrencyMismatchException CurrencyMismatchException::operator=
 //***************************************************************************
 std::string CurrencyMismatchException::what()
 {
-  return cErrorMessage;
+  return mcErrorMessage;
 }
