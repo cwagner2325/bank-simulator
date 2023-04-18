@@ -19,13 +19,21 @@ ACCOUNT_FILES= include/IBankAccount.h src/IBankAccount.cpp include/SavingsAccoun
 							 src/SavingsAccount.cpp include/CheckingAccount.h src/CheckingAccount.cpp 
 COMMAND_FILES= include/ICommand.h include/DepositCommand.h src/DepositCommand.cpp \
 							 include/WithdrawCommand.h src/WithdrawCommand.cpp include/UpdateMonthCommand.h \
-							 src/UpdateMonthCommand.cpp include/PrintAllCommand.h src/PrintAllCommand.cpp
+							 src/UpdateMonthCommand.cpp include/PrintAllCommand.h src/PrintAllCommand.cpp \
+							 include/BackupCommand.h src/BackupCommand.cpp
 INTEREST_FILES= include/IInterest.h src/IInterest.cpp include/TieredInterest.h src/TieredInterest.cpp \
 								include/FlatInterest.h src/FlatInterest.cpp
 CONTAINER_FILES= include/IAccountContainer.h include/AccountMap.h src/AccountMap.cpp 
 MONEY_FILES= include/Money.h src/Money.cpp
 CURRENCY_FILES= include/Currency.h src/Currency.cpp include/CurrencyMismatchException.h \
-								src/CurrencyMismatchException.cpp
+								src/CurrencyMismatchException.cpp include/ConversionTable.h \
+								src/ConversionTable.cpp include/Conversion.h src/Conversion.cpp
+SINGLETON_FILES= include/CurrencyMismatchLogger.h src/CurrencyMismatchLogger.cpp \
+								 src/Conversion.cpp
+VISITOR_FILES= include/IVisitor.h include/UpdateMonthVisitor.h \
+							 src/UpdateMonthCommand.cpp include/PrintVisitor.h src/PrintVisitor.cpp \
+							 include/BackupAccountsVisitor.h src/BackupAccountsVisitor.cpp
+
 
 #compiler=clang++
 compiler=g++
@@ -52,12 +60,13 @@ bin/main: bin src/*.cpp include/*.h
 #	${compiler} -std=c++20 -c -o bin/main.o -g -Wall src/helloWorld.cpp 
  
 valgrind: bin/main
-	valgrind ${VALGRIND_FLAGS} bin/main data/Accounts.txt data/Commands.txt
+	valgrind ${VALGRIND_FLAGS} bin/main data/Accounts.txt data/Commands.txt data/CurrencyConversions.txt
 
 printAll:
-	enscript ${ENSCRIPT_FLAGS} src/main.cpp ${CURRENCY_FILES} ${INTEREST_FILES} \
-	${BANK_FILES} ${CONTAINER_FILES} ${MONEY_FILES} ${READER_FILES} \
-	${ACCOUNT_FILES} ${COMMAND_FILES} Makefile_linux | ps2pdf - bin/src.pdf
+	enscript ${ENSCRIPT_FLAGS} src/main.cpp ${SINGLETON_FILES} ${VISITOR_FILES} \
+	${CURRENCY_FILES} ${INTEREST_FILES} ${BANK_FILES} ${CONTAINER_FILES} \
+	${MONEY_FILES} ${READER_FILES} ${ACCOUNT_FILES} ${COMMAND_FILES} \
+	Makefile_linux | ps2pdf - bin/src.pdf
 
 runMe: bin/main
 	bin/main
