@@ -66,7 +66,7 @@ BackupAccountsVisitor::~BackupAccountsVisitor()
 //***************************************************************************
 void BackupAccountsVisitor::visit(CheckingAccount& rAccount)
 {
-  mcrCheckingStream << rAccount;
+  mcrCheckingStream << rAccount << std::endl;
 }
 
 //***************************************************************************
@@ -80,5 +80,5 @@ void BackupAccountsVisitor::visit(CheckingAccount& rAccount)
 //***************************************************************************
 void BackupAccountsVisitor::visit(SavingsAccount& rAccount)
 {
-  mcrCheckingStream << rAccount;
+  mcrSavingStream << rAccount << std::endl;
 }

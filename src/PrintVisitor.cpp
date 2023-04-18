@@ -24,7 +24,7 @@
 //***************************************************************************
 void PrintVisitor::visit(CheckingAccount& rAccount)
 {
-  std::cout << rAccount;
+  std::cout << rAccount << std::endl;
 }
 
 //***************************************************************************
@@ -38,5 +38,5 @@ void PrintVisitor::visit(CheckingAccount& rAccount)
 //***************************************************************************
 void PrintVisitor::visit(SavingsAccount& rAccount)
 {
-  std::cout << rAccount;
+  std::cout << rAccount << std::endl;
 }

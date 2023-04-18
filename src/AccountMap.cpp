@@ -12,6 +12,7 @@
 
 #include "AccountMap.h"
 #include "IBankAccount.h"
+#include "IVisitor.h"
 
 //***************************************************************************
 // Constructor:    AccountMap
@@ -79,20 +80,10 @@ void AccountMap::insert(std::shared_ptr<IBankAccount> pcAccount)
 //
 // Returned:    a pointer to the next account if it exists, else nullptr
 //***************************************************************************
-std::shared_ptr<IBankAccount> AccountMap::getNext()
+void AccountMap::accept(std::shared_ptr<IVisitor> pcVisitor)
 {
-  if (mIter == mapcTheMap.end())
+  for (mIter = mapcTheMap.begin(); mIter != mapcTheMap.end(); mIter++)
   {
-    mIter = mapcTheMap.begin();
-    return mIter->second;
+    mIter->second->accept(pcVisitor);
   }
-
-  mIter++;
-
-  if (mIter == mapcTheMap.end()) 
-  {
-    return nullptr;
-  }
-
-  return mIter->second;
 }

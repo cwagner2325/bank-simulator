@@ -13,6 +13,7 @@
 #include <memory>
 #include "Money.h"
 #include "IInterest.h"
+#include "IVisitor.h"
 
 class IBankAccount 
 {
@@ -41,6 +42,8 @@ class IBankAccount
     virtual void updateMonth() = 0;
     int getAccountNumber() {return mAccountNumber;};
     virtual bool equals(int);
+
+    virtual void accept(std::shared_ptr<IVisitor>) = 0;
 
     virtual std::ostream& print(std::ostream&) const; 
     friend std::ostream& operator<<(std::ostream&, const IBankAccount&);

@@ -10,6 +10,7 @@
 #include <string>
 #include "IBankAccount.h"
 #include "CheckingAccount.h"
+#include "IVisitor.h"
 
 //***************************************************************************
 // Constructor:     CheckingAccount
@@ -112,4 +113,18 @@ std::istream& CheckingAccount::read(std::istream& rcIn)
   IBankAccount::read(rcIn);
   rcIn >> mMinBalance >> mMinBalanceFee;
   return rcIn;
+}
+
+//***************************************************************************
+// Function:    accept
+//
+// Description: accepts a visitor on itself
+//
+// Parameters:  pVisitor - the visitor that operates on the account
+//
+// Returned:    none
+//***************************************************************************
+void CheckingAccount::accept(std::shared_ptr<IVisitor> pVisitor)
+{
+  pVisitor->visit(*this);
 }

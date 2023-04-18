@@ -15,6 +15,10 @@
 #include "IBankAccount.h"
 #include "Bank.h"
 #include "CurrencyMismatchException.h"
+#include "IVisitor.h"
+#include "PrintVisitor.h"
+#include "UpdateMonthVisitor.h"
+#include "BackupAccountsVisitor.h"
 
 //***************************************************************************
 // Constructor:    Bank
@@ -88,7 +92,7 @@ void Bank::printAll()
   const int NUM_CHARS = 13;
   const char BORDER_CHAR = '-';
 
-  std::shared_ptr<IBankAccount> pcAccount;
+  std::shared_ptr<IVisitor> pcVisitor (new PrintVisitor());
 
   for (int i = 0; i < NUM_CHARS; i++) 
   {
@@ -97,10 +101,7 @@ void Bank::printAll()
 
   std::cout << std::endl;
 
-  while (nullptr != (pcAccount = mapcAccounts->getNext()))
-  {
-    std::cout << *pcAccount << std::endl;
-  }
+  mapcAccounts->accept(pcVisitor);
 
   for (int i = 0; i < NUM_CHARS; i++) 
   {
@@ -121,12 +122,9 @@ void Bank::printAll()
 //***************************************************************************
 void Bank::updateMonth()
 {
-  std::shared_ptr<IBankAccount> pcAccount;
+  std::shared_ptr<IVisitor> pcVisitor (new UpdateMonthVisitor());
 
-  while (nullptr != (pcAccount = mapcAccounts->getNext()))
-  {
-    pcAccount->updateMonth();
-  }
+  mapcAccounts->accept(pcVisitor);
 }
 
 //***************************************************************************
@@ -141,7 +139,10 @@ void Bank::updateMonth()
 //***************************************************************************
 void Bank::backupAccounts(std::string checkingFile, std::string savingFile)
 {
-  
+  std::shared_ptr<IVisitor> pcVisitor 
+    (new BackupAccountsVisitor(checkingFile, savingFile));
+
+  mapcAccounts->accept(pcVisitor);
 }
 
 //***************************************************************************

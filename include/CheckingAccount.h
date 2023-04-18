@@ -12,6 +12,7 @@
 #include <string>
 #include "IBankAccount.h"
 #include "Money.h"
+#include "IVisitor.h"
 
 class CheckingAccount : public IBankAccount 
 {
@@ -28,6 +29,7 @@ class CheckingAccount : public IBankAccount
     virtual void deposit(const Money&);
     virtual void withdraw(const Money&);
     virtual void updateMonth();
+    virtual void accept(std::shared_ptr<IVisitor>);
 
     virtual std::ostream& print(std::ostream&) const; 
     virtual std::istream& read(std::istream&);

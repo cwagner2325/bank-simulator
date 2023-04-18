@@ -10,7 +10,9 @@
 #pragma once
 
 #include <memory>
+
 #include "IBankAccount.h"
+#include "IVisitor.h"
 
 class IAccountContainer
 {
@@ -21,5 +23,5 @@ class IAccountContainer
 
     virtual void insert(std::shared_ptr<IBankAccount>) = 0;
 
-    virtual std::shared_ptr<IBankAccount> getNext() = 0;
+    virtual void accept(std::shared_ptr<IVisitor>) = 0;
 };

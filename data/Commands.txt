@@ -3,6 +3,7 @@ W 1 GBP 100
 D 3 USD 100
 D 1 YEN 1000
 P
+B c.txt s.txt
 M
 P
 W 1 USD 9900

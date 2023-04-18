@@ -11,8 +11,8 @@
 
 #include <iostream>
 
-#include "SavingsAccount.h"
-#include "CheckingAccount.h"
+class CheckingAccount;
+class SavingsAccount;
 
 class IVisitor
 {

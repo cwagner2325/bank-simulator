@@ -10,6 +10,7 @@
 #include "IBankAccount.h"
 #include "SavingsAccount.h"
 #include "Money.h"
+#include "IVisitor.h"
 
 //***************************************************************************
 // Constructor:     SavingsAccount
@@ -107,4 +108,18 @@ std::istream& SavingsAccount::read(std::istream& rcIn)
   mbMonthlyFeeReached = isBelow(mMinMonthlyBalance);
 
   return rcIn;
+}
+
+//***************************************************************************
+// Function:    accpet
+//
+// Description: accepts a visitor on itself
+//
+// Parameters:  pVisitor - the visitor that operates on the account
+//
+// Returned:    none
+//***************************************************************************
+void SavingsAccount::accept(std::shared_ptr<IVisitor> pVisitor)
+{
+  pVisitor->visit(*this);
 }

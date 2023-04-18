@@ -10,9 +10,11 @@
 #pragma once
 
 #include <memory>
+#include <map>
+
 #include "IBankAccount.h"
 #include "IAccountContainer.h"
-#include "map"
+#include "IVisitor.h"
 
 class AccountMap : public IAccountContainer
 {
@@ -24,9 +26,9 @@ class AccountMap : public IAccountContainer
 
     virtual void insert(std::shared_ptr<IBankAccount>);
 
-    virtual std::shared_ptr<IBankAccount> getNext();
+    virtual void accept(std::shared_ptr<IVisitor>);
 
   private:
-    std::map<int, std::shared_ptr <IBankAccount>> mapcTheMap;
+    std::map<int, std::shared_ptr<IBankAccount>> mapcTheMap;
     std::map<int, std::shared_ptr<IBankAccount>>::iterator mIter;
 };

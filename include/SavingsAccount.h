@@ -13,6 +13,7 @@
 
 #include "IBankAccount.h"
 #include "Money.h"
+#include "IVisitor.h"
 
 class SavingsAccount : public IBankAccount
 {
@@ -35,4 +36,6 @@ class SavingsAccount : public IBankAccount
     virtual std::ostream& print(std::ostream&) const; 
 
     virtual std::istream& read(std::istream&);
+
+    virtual void accept(std::shared_ptr<IVisitor>);
 };
