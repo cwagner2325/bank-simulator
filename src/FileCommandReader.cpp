@@ -18,6 +18,7 @@
 #include "UpdateMonthCommand.h"
 #include "DepositCommand.h"
 #include "WithdrawCommand.h"
+#include "BackupCommand.h"
 #include "IReceiver.h"
 #include "Money.h"
 
@@ -65,9 +66,12 @@ std::shared_ptr<ICommand> FileCommandReader::readCommand(
   const char UPDATE_MONTH = 'M';
   const char DEPOSIT_COMMAND = 'D';
   const char WITHDRAW_COMMAND = 'W';
+  const char BACKUP_COMMAND = 'B';
 
   char commandIdentity = '.';
   int accountNumber = 0;
+  std::string checkingFile;
+  std::string savingFile;
   Money amount;
 
   std::shared_ptr<ICommand> pcCommand = nullptr;
@@ -91,6 +95,11 @@ std::shared_ptr<ICommand> FileCommandReader::readCommand(
   {
     mcInFile >> accountNumber >> amount;
     pcCommand = std::make_shared<WithdrawCommand> (pReceiver, accountNumber, amount);
+  }
+  else if (BACKUP_COMMAND == commandIdentity)
+  {
+    mcInFile >> checkingFile >> savingFile;
+    pcCommand = std::make_shared<BackupCommand> (pReceiver, checkingFile, savingFile);
   }
 
   return pcCommand;

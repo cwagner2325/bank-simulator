@@ -130,6 +130,21 @@ void Bank::updateMonth()
 }
 
 //***************************************************************************
+// Function:    backupAccounts
+//
+// Description: backups the accounts to the files using a visitor
+//
+// Parameters:  checkingFile - the file that checking accounts are printed to
+//              savingFile   - the file that savings accounts are printed to
+//
+// Returned:    none
+//***************************************************************************
+void Bank::backupAccounts(std::string checkingFile, std::string savingFile)
+{
+  
+}
+
+//***************************************************************************
 // Function:    deposit
 //
 // Description: finds an account based on an account number and deposits an
