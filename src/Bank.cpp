@@ -19,6 +19,7 @@
 #include "PrintVisitor.h"
 #include "UpdateMonthVisitor.h"
 #include "BackupAccountsVisitor.h"
+#include "CurrencyMismatchLogger.h"
 
 //***************************************************************************
 // Constructor:    Bank
@@ -59,7 +60,7 @@ Bank::~Bank() {}
 //***************************************************************************
 void Bank::executeCommands(std::vector<std::shared_ptr<ICommand>> acCommands)
 {
-  for (int i = 0; i < static_cast<int> (acCommands.size()); i++) 
+  for (unsigned int i = 0; i < (acCommands.size()); i++) 
   {
     try 
     {
@@ -70,10 +71,6 @@ void Bank::executeCommands(std::vector<std::shared_ptr<ICommand>> acCommands)
       std::cout << std::endl << "Bank::executeCommands failed: " << err.what()
                 << std::endl << std::endl;
       exit(EXIT_FAILURE);
-    }
-    catch (CurrencyMismatchException& err)
-    {
-      ;
     }
   }
 }
@@ -158,14 +155,28 @@ void Bank::backupAccounts(std::string checkingFile, std::string savingFile)
 //***************************************************************************
 void Bank::deposit(int accountNumber, const Money& depositAmount)
 {
+  const std::string COMMAND = "D";
+  std::shared_ptr<IBankAccount> pcAccount;
+
   try 
   {
-    std::shared_ptr<IBankAccount> pcAccount = mapcAccounts->find(accountNumber);
-    pcAccount->deposit(depositAmount);
+    pcAccount = mapcAccounts->find(accountNumber);
   }
   catch (std::out_of_range& err)
   {
     throw err;
+  }
+
+  try
+  {
+    pcAccount->deposit(depositAmount);
+  }
+  catch (CurrencyMismatchException& err)
+  {
+    std::string error = "COMMAND: " + COMMAND + " ACCOUNT: " 
+                        + std::to_string(pcAccount->getAccountNumber()) + " ";
+
+    CurrencyMismatchLogger::getInstance().writeToFile(error + err.what());
   }
 }
 
@@ -182,13 +193,27 @@ void Bank::deposit(int accountNumber, const Money& depositAmount)
 //***************************************************************************
 void Bank::withdraw(int accountNumber, const Money& withdrawAmount)
 {
+  const std::string COMMAND = "W";
+  std::shared_ptr<IBankAccount> pcAccount;
+
   try 
   {
-    std::shared_ptr<IBankAccount> pcAccount = mapcAccounts->find(accountNumber);
-    pcAccount->withdraw(withdrawAmount);
+    pcAccount = mapcAccounts->find(accountNumber);
   }
   catch (std::out_of_range& err)
   {
     throw err;
+  }
+
+  try
+  {
+    pcAccount->withdraw(withdrawAmount);
+  }
+  catch (CurrencyMismatchException& err)
+  {
+    std::string error = "COMMAND: " + COMMAND + " ACCOUNT: " 
+                        + std::to_string(pcAccount->getAccountNumber()) + " ";
+
+    CurrencyMismatchLogger::getInstance().writeToFile(error + err.what());
   }
 }

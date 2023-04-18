@@ -56,8 +56,10 @@ Money ConversionTable::convert(const Money& rcMoney, const Currency& rcCurr)
     }
   }
 
-  throw CurrencyMismatchException(rcMoney.getCurrency().to_string() + "to:" 
-                                  + rcCurr.to_string());
+  std::string error = "CurrencyMismatchException: FROM: " + 
+                      rcMoney.getCurrency().to_string() + " TO: " + rcCurr.to_string();
+
+  throw CurrencyMismatchException(error);
 }
 
 
