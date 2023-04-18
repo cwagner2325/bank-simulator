@@ -20,6 +20,7 @@
 #include "IAccountContainer.h"
 #include "AccountMap.h"
 #include "Money.h"
+#include "ConversionTable.h"
 
 //***************************************************************************
 // Function:    main
@@ -35,7 +36,7 @@ int main(int argc, char *argv[])
   const int CORRECT_NUM_COMMANDS_ARGS = 4;
   const int ACCOUNT_FILE_INDEX = 1;
   const int COMMAND_FILE_INDEX = 2;
-  //const int CONVERSIONS_FILE_INDEX = 3;
+  const int CONVERSIONS_FILE_INDEX = 3;
 
   if (CORRECT_NUM_COMMANDS_ARGS != argc) 
   {
@@ -51,6 +52,9 @@ int main(int argc, char *argv[])
                           
   std::shared_ptr<ICommandReader> pcCommandReader
                           (new FileCommandReader(argv[COMMAND_FILE_INDEX]));
+
+  ConversionTable::getInstance()->readConversionFromFile(argv[CONVERSIONS_FILE_INDEX]);
+  ConversionTable::getInstance();
 
   std::shared_ptr<IAccountContainer> pcMap (new AccountMap());
 
