@@ -44,17 +44,18 @@ ConversionTable& ConversionTable::getInstance()
 //***************************************************************************
 Money ConversionTable::convert(const Money& rcMoney, const Currency& rcCurr)
 {
-  Money cNewMoney;
+  Money cTempMoney;
   Conversion cNewConversion(rcMoney.getCurrency(), rcCurr, 0);
   
   for (unsigned int i = 0; i < mapcConversions.size(); i++)
   {
     if (mapcConversions.at(i) == cNewConversion)
     {
-      cNewMoney = rcMoney * mapcConversions.at(i).getConversionRate();
-      return cNewMoney;
+      cTempMoney = rcMoney * mapcConversions.at(i).getConversionRate();
+      return Money(cTempMoney, rcCurr);
     }
   }
+
   throw CurrencyMismatchException(rcMoney.getCurrency().to_string() + "to:" 
                                   + rcCurr.to_string());
 }

@@ -120,7 +120,7 @@ std::ostream& operator<<(std::ostream& rcOut, const IBankAccount& rcAccount)
 //***************************************************************************
 bool IBankAccount::isBelow(const Money& amount)
 {
-  return amount > mBalance;
+  return !(mBalance >= amount);
 }
 
 //***************************************************************************

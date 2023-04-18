@@ -22,6 +22,7 @@ class Money
   public:
     Money();
     Money(long long, const Currency&);
+    Money(const Money, const Currency);
     Money(const Money&);
 
     virtual ~Money() {};

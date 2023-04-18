@@ -12,6 +12,7 @@
 
 #include "Money.h"
 #include "CurrencyMismatchException.h"
+#include "ConversionTable.h"
 
 //***************************************************************************
 // Constructor:    Money
@@ -23,6 +24,19 @@
 Money::Money()
 {
   mAmount = 0;
+}
+
+//***************************************************************************
+// Constructor: Money
+//
+// Description: sets mAmount to a specific value
+//
+// Parameters:  amount - the amount that mAmount is set to
+//***************************************************************************
+Money::Money(const Money rcMoney, const Currency rcCurrency)
+{
+  mCurrency = rcCurrency;
+  mAmount = rcMoney.mAmount;
 }
 
 //***************************************************************************
@@ -66,9 +80,14 @@ Money Money::operator+(const Money& rcMoney) const
   {
     return Money(mAmount + rcMoney.mAmount, mCurrency);
   }
-  else
+
+  try 
   {
-    throw CurrencyMismatchException("failed: operator+");
+    return Money(*this + ConversionTable::getInstance().convert(rcMoney, mCurrency));
+  }
+  catch (CurrencyMismatchException& err)
+  {
+    throw err;
   }
 }
 
@@ -87,9 +106,14 @@ Money Money::operator-(const Money& rcMoney) const
   {
     return Money(mAmount - rcMoney.mAmount, mCurrency);
   }
-  else
+
+  try 
   {
-    throw CurrencyMismatchException("failed: operator-");
+    return Money(*this - ConversionTable::getInstance().convert(rcMoney, mCurrency));
+  }
+  catch (CurrencyMismatchException& err)
+  {
+    throw err;
   }
 }
 
@@ -125,9 +149,14 @@ bool Money::operator>(const Money& rcMoney) const
   {
     return mAmount > rcMoney.mAmount;
   }
-  else
+
+  try 
   {
-    throw CurrencyMismatchException("failed: operator>");
+    return *this > ConversionTable::getInstance().convert(rcMoney, mCurrency);
+  }
+  catch (CurrencyMismatchException& err)
+  {
+    throw err;
   }
 }
 
@@ -146,9 +175,9 @@ void Money::operator+=(const Money& rcMoney)
   {
     mAmount = mAmount + rcMoney.mAmount;
   }
-  else 
+  else
   {
-    throw CurrencyMismatchException("failed: operator+=");
+    mAmount = mAmount + ConversionTable::getInstance().convert(rcMoney, mCurrency).mAmount;
   }
 }
 
@@ -169,7 +198,7 @@ void Money::operator-=(const Money& rcMoney)
   }
   else
   {
-    throw CurrencyMismatchException("failed: operator-=");
+    mAmount = mAmount - ConversionTable::getInstance().convert(rcMoney, mCurrency).mAmount;
   }
 }
 
@@ -188,9 +217,14 @@ bool Money::operator>=(const Money& rcMoney) const
   {
     return mAmount >= rcMoney.mAmount;
   }
-  else
+
+  try 
   {
-    throw CurrencyMismatchException("failed: operator>=");
+    return *this >= ConversionTable::getInstance().convert(rcMoney, mCurrency);
+  }
+  catch (CurrencyMismatchException& err)
+  {
+    throw err;
   }
 }
 

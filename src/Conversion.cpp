@@ -72,5 +72,6 @@ std::istream& operator>>(std::istream& rcIn, Conversion& rConversion)
 //***************************************************************************
 bool operator==(const Conversion& rcConversionOne, const Conversion& rcConversionTwo)
 {
-  return rcConversionOne.mcCurrencies == rcConversionTwo.mcCurrencies;
+  return rcConversionOne.mcCurrencies.first == rcConversionTwo.mcCurrencies.first &&
+         rcConversionOne.mcCurrencies.second == rcConversionTwo.mcCurrencies.second;
 }
