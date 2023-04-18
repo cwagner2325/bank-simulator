@@ -32,9 +32,10 @@
 //***************************************************************************
 int main(int argc, char *argv[])
 {
-  const int CORRECT_NUM_COMMANDS_ARGS = 3;
+  const int CORRECT_NUM_COMMANDS_ARGS = 4;
   const int ACCOUNT_FILE_INDEX = 1;
   const int COMMAND_FILE_INDEX = 2;
+  const int CONVERSIONS_FILE_INDEX = 3;
 
   if (CORRECT_NUM_COMMANDS_ARGS != argc) 
   {
