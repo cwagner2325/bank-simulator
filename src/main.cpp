@@ -53,8 +53,7 @@ int main(int argc, char *argv[])
   std::shared_ptr<ICommandReader> pcCommandReader
                           (new FileCommandReader(argv[COMMAND_FILE_INDEX]));
 
-  ConversionTable::getInstance()->readConversionFromFile(argv[CONVERSIONS_FILE_INDEX]);
-  ConversionTable::getInstance();
+  ConversionTable::getInstance().readConversionFromFile(argv[CONVERSIONS_FILE_INDEX]);
 
   std::shared_ptr<IAccountContainer> pcMap (new AccountMap());
 

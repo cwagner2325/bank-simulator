@@ -27,10 +27,8 @@ class ConversionTable
     ConversionTable() {};
     ~ConversionTable() {};
 
-    inline static ConversionTable* pInstance{nullptr};
-
   public:
-    static ConversionTable* getInstance();
+    static ConversionTable& getInstance();
     Money convert(const Money&, const Currency&);
     void readConversionFromFile(std::string);
 };

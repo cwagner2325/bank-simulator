@@ -26,14 +26,11 @@
 //
 // Returned:    
 //***************************************************************************
-ConversionTable* ConversionTable::getInstance()
+ConversionTable& ConversionTable::getInstance()
 {
-  if (nullptr == pInstance)
-  {
-    pInstance = new ConversionTable();
-  }
+  static ConversionTable instance;
 
-  return pInstance;
+  return instance;
 }
 
 //***************************************************************************
