@@ -12,13 +12,9 @@
 #include "CurrencyMismatchLogger.h"
 
 //***************************************************************************
-// Function:    
+// Constructor:    CurrencyMismatchLogger
 //
-// Description: 
-//
-// Parameters:  
-//
-// Returned:    
+// Description:    constructor for CurrencyMismatchLogger. opens the log stream
 //***************************************************************************
 CurrencyMismatchLogger::CurrencyMismatchLogger()
 {
@@ -34,13 +30,9 @@ CurrencyMismatchLogger::CurrencyMismatchLogger()
 }
 
 //***************************************************************************
-// Function:    
+// Destructor:    CurrencyMismatchLogger
 //
-// Description: 
-//
-// Parameters:  
-//
-// Returned:    
+// Description:   destructor for CurrencyMismatchLogger. Closes the log stream
 //***************************************************************************
 CurrencyMismatchLogger::~CurrencyMismatchLogger()
 {
@@ -48,13 +40,13 @@ CurrencyMismatchLogger::~CurrencyMismatchLogger()
 }
 
 //***************************************************************************
-// Function:    
+// Function:    getInstance
 //
-// Description: 
+// Description: gets the single copy of the CurrencyMismatchLogger Singleton
 //
-// Parameters:  
+// Parameters:  none
 //
-// Returned:    
+// Returned:    a refence to the single copy of CurrencyMismatchLogger
 //***************************************************************************
 CurrencyMismatchLogger& CurrencyMismatchLogger::getInstance()
 {
@@ -64,13 +56,13 @@ CurrencyMismatchLogger& CurrencyMismatchLogger::getInstance()
 }
 
 //***************************************************************************
-// Function:    
+// Function:    writeToFile
 //
-// Description: 
+// Description: write a message to the file
 //
-// Parameters:  
+// Parameters:  message - the string that is written to file
 //
-// Returned:    
+// Returned:    none
 //***************************************************************************
 void CurrencyMismatchLogger::writeToFile(std::string message)
 {

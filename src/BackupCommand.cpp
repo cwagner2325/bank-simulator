@@ -4,7 +4,7 @@
 // Date:       3/8/2023
 // Class:      CS380
 // Assignment: Bank
-// Purpose:    To impkement the WithdrawCommand 
+// Purpose:    To implement the WithdrawCommand 
 //********************************************************
 
 #include <memory>
@@ -17,7 +17,9 @@
 //
 // Description:    Initializes member variables 
 //
-// Parameters:     pReceiver      - 
+// Parameters:     pReceiver    - a pointer to the receiver
+//                 checkingFile - the name of the file for checking accounts
+//                 savingsFile  - the name of the file for savings accounts
 //***************************************************************************
 BackupCommand::BackupCommand(std::shared_ptr<IReceiver> pReceiver, 
                              std::string checkingFile, std::string savingsFile)
@@ -30,7 +32,7 @@ BackupCommand::BackupCommand(std::shared_ptr<IReceiver> pReceiver,
 //***************************************************************************
 // Function:      execute
 //
-// Description:   execute the withdraw on the receiever using me=mber data
+// Description:   execute the backup on the receiever using member data
 //
 // Parameters:    none
 //

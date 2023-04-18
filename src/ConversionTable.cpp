@@ -18,13 +18,13 @@
 #include "CurrencyMismatchException.h"
 
 //***************************************************************************
-// Function:    
+// Function:    getInstance
 //
-// Description: 
+// Description: gets the single static copy of the ConversionTable singleton
 //
-// Parameters:  
+// Parameters:  none
 //
-// Returned:    
+// Returned:    a reference to the single copy of the ConversionTable
 //***************************************************************************
 ConversionTable& ConversionTable::getInstance()
 {
@@ -34,13 +34,14 @@ ConversionTable& ConversionTable::getInstance()
 }
 
 //***************************************************************************
-// Function:    
+// Function:    convert
 //
-// Description: 
+// Description: converts a money to a new currency using the conversion table
 //
-// Parameters:  
+// Parameters:  rcMoney - a reference to the money object to be converted
+//              rcCurr  - the currency to be converted to 
 //
-// Returned:    
+// Returned:    a new Money object that has been converted to the new currency
 //***************************************************************************
 Money ConversionTable::convert(const Money& rcMoney, const Currency& rcCurr)
 {
@@ -64,13 +65,13 @@ Money ConversionTable::convert(const Money& rcMoney, const Currency& rcCurr)
 
 
 //***************************************************************************
-// Function:    
+// Function:    readConversionFromFile
 //
-// Description: 
+// Description: initalizes the conversion table from data in a file
 //
-// Parameters:  
+// Parameters:  filename - the name of the file that is opened for reading
 //
-// Returned:    
+// Returned:    none
 //***************************************************************************
 void ConversionTable::readConversionFromFile(std::string fileName)
 {

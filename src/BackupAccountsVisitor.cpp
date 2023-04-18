@@ -16,11 +16,14 @@
 #include "BackupAccountsVisitor.h"
 
 //***************************************************************************
-// Constructor:    
+// Constructor:    BackupAccountsVisitor
 //
-// Description: 
+// Description:    opens the file for writing and terminates program if not opened
 //
-// Parameters:  
+// Parameters:     checkingFile - the name of the file opened for logging 
+//                                checkings accounts
+//                 savingFile   - the name of the file opened for logging 
+//                                savings accounts
 //***************************************************************************
 BackupAccountsVisitor::BackupAccountsVisitor(std::string checkingFile, 
                                              std::string savingFile)
@@ -43,11 +46,9 @@ BackupAccountsVisitor::BackupAccountsVisitor(std::string checkingFile,
 }
 
 //***************************************************************************
-// Constructor:    
+// Destructor:    BackupAccountsVisitor
 //
-// Description: 
-//
-// Parameters:  
+// Description:   closes the output stream
 //***************************************************************************
 BackupAccountsVisitor::~BackupAccountsVisitor()
 {
